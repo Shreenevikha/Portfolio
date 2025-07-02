@@ -1,0 +1,9 @@
+/* Force header nav buttons to have no background or shadow on hover, active, or focus */
+header .MuiButton-root,
+header .MuiButton-root:hover,
+header .MuiButton-root:active,
+header .MuiButton-root:focus {
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+} 
