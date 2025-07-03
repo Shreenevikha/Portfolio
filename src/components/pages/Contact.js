@@ -28,28 +28,28 @@ const contactInfo = [
     title: 'Email',
     value: 'shreenevikha2003@gmail.com',
     link: 'mailto:shreenevikha2003@gmail.com',
-    bg: '#ef476f',
+    bg: 'linear-gradient(135deg, #ff6a00 0%, #ee0979 100%)',
   },
   {
     icon: <Phone />,
     title: 'Phone',
     value: '+91 9080856291',
     link: 'tel:+919080856291',
-    bg: '#06d6a0',
+    bg: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
   },
   {
     icon: <LocationOn />,
     title: 'Location',
     value: 'Coimbatore, TamilNadu',
     link: null,
-    bg: '#118ab2',
+    bg: 'linear-gradient(135deg, #396afc 0%, #2948ff 100%)',
   },
   {
     icon: <LinkedIn />,
     title: 'LinkedIn',
     value: 'linkedin.com/in/shreenevikha-n',
     link: 'https://linkedin.com/in/shreenevikha-n',
-    bg: '#2563eb',
+    bg: 'linear-gradient(135deg, #0a66c2 0%, #0072b1 100%)',
   },
 ];
 
@@ -58,16 +58,19 @@ const socialLinks = [
     icon: <LinkedIn />,
     url: 'https://linkedin.com/in/shreenevikha-n',
     label: 'LinkedIn',
+    bg: 'linear-gradient(135deg, #0a66c2 0%, #0072b1 100%)',
   },
   {
     icon: <GitHub />,
     url: 'https://github.com/',
     label: 'GitHub',
+    bg: 'linear-gradient(135deg, #232526 0%, #414345 100%)',
   },
   {
     icon: <MailOutline />,
     url: 'mailto:shreenevikha2003@gmail.com',
     label: 'Email',
+    bg: 'linear-gradient(135deg, #ff6a00 0%, #ee0979 100%)',
   },
 ];
 
@@ -94,16 +97,43 @@ const Contact = () => {
   };
 
   return (
-    <Box sx={{ minHeight: '100vh', bgcolor: theme.palette.background.default, py: { xs: 4, md: 8 } }}>
-      <Container maxWidth="lg">
+    <Box
+      sx={{
+        minHeight: '100vh',
+        position: 'relative',
+        overflow: 'hidden',
+        py: { xs: 4, md: 8 },
+        // Animated gradient background
+        background: theme.palette.mode === 'dark'
+          ? 'linear-gradient(120deg, #232526 0%, #414345 100%)'
+          : 'linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%)',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          zIndex: 0,
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'radial-gradient(circle at 80% 20%, #a21caf33 0%, transparent 60%), radial-gradient(circle at 20% 80%, #6366f133 0%, transparent 60%)',
+          pointerEvents: 'none',
+        },
+      }}
+    >
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Typography
           variant="h3"
           align="center"
           sx={{
-            fontWeight: 800,
+            fontWeight: 900,
             mb: 1,
-            color: 'primary.main',
+            background: 'linear-gradient(90deg, #6366f1 0%, #a21caf 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
             letterSpacing: 1,
+            fontSize: { xs: '2rem', md: '2.8rem' },
+            textShadow: '0 2px 8px rgba(99,102,241,0.12)',
+            animation: 'gradient-move 3s ease-in-out infinite',
           }}
         >
           Let's Work Together
@@ -129,7 +159,7 @@ const Contact = () => {
                   <Stack direction="row" spacing={2} alignItems="center" key={idx}>
                     <Box
                       sx={{
-                        bgcolor: info.bg,
+                        background: info.bg,
                         color: '#fff',
                         p: 1.5,
                         borderRadius: 2,
@@ -139,12 +169,18 @@ const Contact = () => {
                         minWidth: 44,
                         height: 44,
                         fontSize: 24,
+                        boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)',
+                        transition: 'transform 0.2s, box-shadow 0.2s',
+                        '&:hover': {
+                          transform: 'scale(1.08) rotate(-3deg)',
+                          boxShadow: '0 4px 16px 0 rgba(99,102,241,0.18)',
+                        },
                       }}
                     >
                       {info.icon}
                     </Box>
                     <Box>
-                      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
                         {info.title}
                       </Typography>
                       {info.link ? (
@@ -173,7 +209,7 @@ const Contact = () => {
                 ))}
               </Stack>
               <Divider sx={{ my: 4 }} />
-              <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
                 Follow Me
               </Typography>
               <Stack direction="row" spacing={2}>
@@ -185,17 +221,18 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     aria-label={social.label}
                     sx={{
-                      bgcolor: theme.palette.mode === 'dark' ? theme.palette.background.paper : '#f3f4f6',
-                      color: 'text.primary',
-                      border: `1px solid ${theme.palette.divider}`,
+                      background: social.bg,
+                      color: '#fff',
+                      border: 'none',
                       width: 40,
                       height: 40,
+                      boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)',
+                      transition: 'transform 0.2s, box-shadow 0.2s',
                       '&:hover': {
-                        bgcolor: 'primary.main',
-                        color: '#fff',
-                        borderColor: 'primary.main',
+                        filter: 'brightness(1.15)',
+                        transform: 'scale(1.15) rotate(6deg)',
+                        boxShadow: '0 4px 16px 0 rgba(99,102,241,0.18)',
                       },
-                      transition: 'all 0.2s',
                     }}
                   >
                     {social.icon}
@@ -207,96 +244,117 @@ const Contact = () => {
           {/* Right: Contact Form */}
           <Grid item xs={12} md={6}>
             <Paper
-              elevation={3}
+              elevation={12}
               sx={{
-                borderRadius: 3,
+                borderRadius: 5,
                 p: { xs: 3, md: 4 },
-                bgcolor: theme.palette.background.paper,
-                boxShadow: '0 4px 24px 0 rgba(0,0,0,0.08)',
-                mt: 0,
-                mb: 0,
+                bgcolor: theme.palette.mode === 'dark'
+                  ? 'rgba(30,34,44,0.85)'
+                  : 'rgba(255,255,255,0.85)',
+                boxShadow: '0 12px 48px 0 rgba(99,102,241,0.18)',
+                backdropFilter: 'blur(12px)',
+                border: '1.5px solid rgba(99,102,241,0.18)',
+                position: 'relative',
+                overflow: 'hidden',
               }}
             >
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 3 }}>
-                Send me a message
-              </Typography>
-              <Box component="form" onSubmit={handleSubmit}>
-                <Stack spacing={2}>
-                  <TextField
-                    fullWidth
-                    label="Full Name *"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Your full name"
-                  />
-                  <TextField
-                    fullWidth
-                    label="Email Address *"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="your.email@example.com"
-                  />
-                  <TextField
-                    fullWidth
-                    label="Subject *"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    placeholder="What's this about?"
-                  />
-                  <TextField
-                    fullWidth
-                    label="Message *"
-                    name="message"
-                    multiline
-                    minRows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    placeholder="Tell me more about your project or inquiry..."
-                  />
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    fullWidth
-                    startIcon={<SendIcon />}
-                    sx={{
-                      background: 'linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%)',
-                      color: '#fff',
-                      fontWeight: 700,
-                      fontSize: '1rem',
-                      py: 1.5,
-                      borderRadius: 2,
-                      mt: 1,
-                      textTransform: 'none',
-                      boxShadow: 'none',
-                      '&:hover': {
-                        background: 'linear-gradient(90deg, #8b5cf6 0%, #3b82f6 100%)',
-                        boxShadow: '0 2px 8px 0 rgba(59,130,246,0.15)',
-                      },
-                    }}
-                  >
-                    Send Message
-                  </Button>
-                  <Box
-                    sx={{
-                      mt: 2,
-                      p: 2,
-                      bgcolor: theme.palette.mode === 'dark' ? '#23272f' : '#e0e7ff',
-                      borderRadius: 2,
-                    }}
-                  >
-                    <Typography variant="body2" sx={{ color: theme.palette.mode === 'dark' ? '#fff' : '#3730a3' }}>
-                      <strong>Note:</strong> This is a styled contact form for portfolio demonstration. For direct contact, please use the email or LinkedIn links above.
-                    </Typography>
-                  </Box>
-                </Stack>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  zIndex: 0,
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  background: 'radial-gradient(circle at 80% 20%, #a21caf22 0%, transparent 60%)',
+                  pointerEvents: 'none',
+                }}
+              />
+              <Box sx={{ position: 'relative', zIndex: 1 }}>
+                <Typography variant="h6" sx={{ fontWeight: 800, mb: 3, color: 'primary.main' }}>
+                  Send me a message
+                </Typography>
+                <Box component="form" onSubmit={handleSubmit}>
+                  <Stack spacing={2}>
+                    <TextField
+                      fullWidth
+                      label="Full Name *"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      placeholder="Your full name"
+                    />
+                    <TextField
+                      fullWidth
+                      label="Email Address *"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="your.email@example.com"
+                    />
+                    <TextField
+                      fullWidth
+                      label="Subject *"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      placeholder="What's this about?"
+                    />
+                    <TextField
+                      fullWidth
+                      label="Message *"
+                      name="message"
+                      multiline
+                      minRows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      placeholder="Tell me more about your project or inquiry..."
+                    />
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      fullWidth
+                      startIcon={<SendIcon />}
+                      sx={{
+                        background: 'linear-gradient(90deg, #6366f1 0%, #a21caf 100%)',
+                        color: '#fff',
+                        fontWeight: 700,
+                        fontSize: '1rem',
+                        py: 1.5,
+                        borderRadius: 2,
+                        mt: 1,
+                        textTransform: 'none',
+                        boxShadow: 'none',
+                        letterSpacing: 1,
+                        transition: 'background 0.3s, filter 0.2s',
+                        '&:hover': {
+                          background: 'linear-gradient(90deg, #a21caf 0%, #6366f1 100%)',
+                          boxShadow: '0 2px 8px 0 rgba(99,102,241,0.15)',
+                          filter: 'brightness(1.08)',
+                        },
+                      }}
+                    >
+                      Send Message
+                    </Button>
+                    <Box
+                      sx={{
+                        mt: 2,
+                        p: 2,
+                        bgcolor: theme.palette.mode === 'dark' ? 'rgba(99,102,241,0.15)' : '#e0e7ff',
+                        borderRadius: 2,
+                      }}
+                    >
+                      <Typography variant="body2" sx={{ color: theme.palette.mode === 'dark' ? '#fff' : '#3730a3' }}>
+                        <strong>Note:</strong> This is a styled contact form for portfolio demonstration. For direct contact, please use the email or LinkedIn links above.
+                      </Typography>
+                    </Box>
+                  </Stack>
+                </Box>
               </Box>
             </Paper>
           </Grid>
