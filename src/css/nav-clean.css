@@ -1,0 +1,31 @@
+/* nav-clean.css: Force no background, border, or shadow for nav buttons */
+.MuiButton-root, .MuiButtonBase-root, .MuiListItem-root, .MuiPaper-root {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+.MuiButton-root:hover, .MuiButtonBase-root:hover {
+  background: none !important;
+  box-shadow: none !important;
+}
+.Mui-selected, .Mui-selected:hover, .MuiListItem-root, .MuiListItemText-root {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+header .MuiButton-root,
+header .MuiButton-root:hover,
+header .MuiButton-root:active,
+header .MuiButton-root:focus,
+header .MuiButtonBase-root,
+header .MuiButtonBase-root:hover,
+header .MuiButtonBase-root:active,
+header .MuiButtonBase-root:focus,
+header .MuiButton-root::before,
+header .MuiButton-root::after,
+header .MuiButtonBase-root::before,
+header .MuiButtonBase-root::after {
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+} 

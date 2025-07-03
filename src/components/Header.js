@@ -17,6 +17,7 @@ import {
 } from '@mui/material';
 import { Menu as MenuIcon, Home, Work, School, Code, Psychology, EmojiEvents, ContactMail } from '@mui/icons-material';
 import { Link } from 'react-scroll';
+import '../css/nav-clean.css';
 
 const navItems = [
   { name: 'Home', to: 'hero', icon: <Home /> },
@@ -66,7 +67,7 @@ const Header = () => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', pt: 2 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', pt: 2 }}>
       <Typography
         variant="h6"
         sx={{
@@ -78,49 +79,51 @@ const Header = () => {
       >
         SHREENEVIKHA N
       </Typography>
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item.name} disablePadding>
-            <Link
-              to={item.to}
-              spy={true}
-              smooth={true}
-              offset={-80}
-              duration={500}
-              onClick={() => handleNavClick(item.to)}
-              style={{ width: '100%', textDecoration: 'none' }}
-            >
-              <ListItemText
-                primary={
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Box sx={{ mr: 1, display: 'flex', alignItems: 'center' }}>
-                      {item.icon}
-                    </Box>
-                    {item.name}
-                  </Box>
-                }
-                sx={{
-                  textAlign: 'center',
-                  '& .MuiListItemText-primary': {
-                    color: activeSection === item.to ? theme.palette.primary.main : theme.palette.text.primary,
-                    fontWeight: activeSection === item.to ? 700 : 500,
-                    fontSize: '1.1rem',
-                    padding: '16px 0',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    borderRadius: 2,
-                    mx: 2,
-                                          '&:hover': {
-                        color: theme.palette.primary.main,
-                        transform: 'translateX(5px)',
-                      },
-                  },
-                }}
-              />
-            </Link>
-          </ListItem>
-        ))}
-      </List>
+      {navItems.map((item, idx) => (
+        <React.Fragment key={item.name}>
+          <Button
+            startIcon={item.icon}
+            fullWidth
+            variant="text"
+            disableRipple
+            sx={{
+              justifyContent: 'flex-start',
+              color: activeSection === item.to ? 'primary.main' : theme.palette.text.primary,
+              fontWeight: 600,
+              fontSize: '1.1rem',
+              px: 3,
+              py: 2,
+              borderRadius: 0,
+              background: 'none !important',
+              boxShadow: 'none !important',
+              border: 'none',
+              borderBottom: activeSection === item.to ? '2.5px solid' : '2.5px solid transparent',
+              borderColor: activeSection === item.to ? 'primary.main' : 'transparent',
+              transition: 'color 0.2s, border-bottom 0.2s',
+              '&:hover': {
+                color: 'primary.main',
+                background: 'none !important',
+                borderBottom: '2.5px solid',
+                borderColor: 'primary.main',
+                boxShadow: 'none !important',
+              },
+              '&:active': {
+                background: 'none !important',
+                boxShadow: 'none !important',
+              },
+              '& .MuiTouchRipple-root': {
+                display: 'none',
+              },
+            }}
+            onClick={() => { handleNavClick(item.to); document.getElementById(item.to)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}
+          >
+            {item.name}
+          </Button>
+          {idx < navItems.length - 1 && (
+            <Box sx={{ width: '80%', height: 1, bgcolor: 'divider', mx: 'auto' }} />
+          )}
+        </React.Fragment>
+      ))}
     </Box>
   );
 
@@ -131,13 +134,10 @@ const Header = () => {
           position="fixed"
           elevation={0}
           sx={{
-            background: scrolled
-              ? theme.palette.mode === 'dark' 
-                ? 'rgba(10, 10, 10, 0.95)' 
-                : 'rgba(255, 255, 255, 0.95)'
-              : 'transparent',
-            backdropFilter: scrolled ? 'blur(20px)' : 'none',
-            borderBottom: scrolled ? `1px solid ${theme.palette.divider}` : 'none',
+            background: 'transparent !important',
+            backdropFilter: 'none',
+            borderBottom: 'none',
+            boxShadow: 'none',
             transition: 'all 0.3s ease',
             zIndex: 1200,
           }}
@@ -150,48 +150,43 @@ const Header = () => {
               {/* Desktop Navigation */}
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
                 {navItems.map((item) => (
-                  <Link
+                  <Button
                     key={item.name}
-                    to={item.to}
-                    spy={true}
-                    smooth={true}
-                    offset={-80}
-                    duration={500}
-                    onClick={() => handleNavClick(item.to)}
-                  >
-                    <Button
-                      startIcon={item.icon}
-                      variant="text"
-                      disableRipple
-                      sx={{
-                        color: scrolled 
-                          ? (activeSection === item.to ? theme.palette.primary.main : theme.palette.text.primary)
-                          : (activeSection === item.to ? theme.palette.primary.main : 'white'),
-                        mx: 1,
-                        px: 3,
-                        py: 1.5,
-                        fontWeight: activeSection === item.to ? 700 : 500,
-                        fontSize: '1rem',
-                        borderRadius: 3,
+                    startIcon={item.icon}
+                    variant="text"
+                    disableRipple
+                    sx={{
+                      color: activeSection === item.to ? 'primary.main' : theme.palette.text.primary,
+                      fontWeight: 600,
+                      fontSize: '1.1rem',
+                      px: 2.5,
+                      py: 1.2,
+                      borderRadius: 0,
+                      background: 'none !important',
+                      boxShadow: 'none !important',
+                      border: 'none',
+                      borderBottom: activeSection === item.to ? '2.5px solid' : '2.5px solid transparent',
+                      borderColor: activeSection === item.to ? 'primary.main' : 'transparent',
+                      transition: 'color 0.2s, border-bottom 0.2s',
+                      '&:hover': {
+                        color: 'primary.main',
                         background: 'none !important',
-                        border: activeSection === item.to 
-                          ? `1px solid ${theme.palette.primary.main}` 
-                          : '1px solid transparent',
+                        borderBottom: '2.5px solid',
+                        borderColor: 'primary.main',
                         boxShadow: 'none !important',
-                        filter: 'none !important',
-                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                        '&:hover': {
-                          color: scrolled ? theme.palette.primary.main : 'white',
-                          background: 'none !important',
-                          boxShadow: 'none !important',
-                          filter: 'none !important',
-                          transform: 'translateY(-2px)',
-                        },
-                      }}
-                    >
-                      {item.name}
-                    </Button>
-                  </Link>
+                      },
+                      '&:active': {
+                        background: 'none !important',
+                        boxShadow: 'none !important',
+                      },
+                      '& .MuiTouchRipple-root': {
+                        display: 'none',
+                      },
+                    }}
+                    onClick={() => { handleNavClick(item.to); document.getElementById(item.to)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}
+                  >
+                    {item.name}
+                  </Button>
                 ))}
               </Box>
 
@@ -204,10 +199,11 @@ const Header = () => {
                 sx={{
                   display: { md: 'none' },
                   color: scrolled ? theme.palette.text.primary : 'white',
-                  background: scrolled ? theme.palette.background.paper : 'rgba(255,255,255,0.1)',
-                  border: `1px solid ${scrolled ? theme.palette.divider : 'rgba(255,255,255,0.2)'}`,
+                  background: 'transparent !important',
+                  border: 'none',
                   '&:hover': {
                     transform: 'scale(1.05)',
+                    background: 'none !important',
                   },
                   transition: 'all 0.3s ease',
                 }}

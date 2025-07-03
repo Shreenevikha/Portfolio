@@ -146,28 +146,28 @@ const Hero = () => {
             sx={{ mb: 4 }}
           >
             <Stack direction="row" spacing={2} alignItems="center">
-              <LocationOn sx={{ color: theme.palette.primary.main, fontSize: '1.5rem' }} />
-              <Typography variant="body1" sx={{ fontWeight: 600, fontSize: '1.1rem' }}>
+              <LocationOn sx={{ color: theme.palette.primary.main, fontSize: { xs: '1.7rem', md: '2.1rem', lg: '2.3rem' } }} />
+              <Typography variant="body1" sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.25rem', lg: '1.35rem' } }}>
                 Coimbatore, TamilNadu
               </Typography>
             </Stack>
             
             <Stack direction="row" spacing={2} alignItems="center">
-              <Phone sx={{ color: theme.palette.primary.main, fontSize: '1.5rem' }} />
-              <Typography variant="body1" sx={{ fontWeight: 600, fontSize: '1.1rem' }}>
+              <Phone sx={{ color: theme.palette.primary.main, fontSize: { xs: '1.7rem', md: '2.1rem', lg: '2.3rem' } }} />
+              <Typography variant="body1" sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.25rem', lg: '1.35rem' } }}>
                 +91 9080856291
               </Typography>
             </Stack>
             
             <Stack direction="row" spacing={2} alignItems="center">
-              <Email sx={{ color: theme.palette.primary.main, fontSize: '1.5rem' }} />
+              <Email sx={{ color: theme.palette.primary.main, fontSize: { xs: '1.7rem', md: '2.1rem', lg: '2.3rem' } }} />
               <Typography 
                 variant="body1" 
                 component="a"
                 href="mailto:shreenevikha2003@gmail.com"
                 sx={{ 
                   fontWeight: 600,
-                  fontSize: '1.1rem',
+                  fontSize: { xs: '1.1rem', md: '1.25rem', lg: '1.35rem' },
                   color: theme.palette.text.primary,
                   textDecoration: 'none',
                   '&:hover': {
@@ -205,7 +205,7 @@ const Hero = () => {
                 transition: 'all 0.3s ease',
               }}
             >
-              <GitHub />
+              <GitHub sx={{ fontSize: { xs: '2.2rem', md: '2.7rem', lg: '3rem' } }} />
             </IconButton>
             
             <IconButton
@@ -226,7 +226,7 @@ const Hero = () => {
                 transition: 'all 0.3s ease',
               }}
             >
-              <LinkedIn />
+              <LinkedIn sx={{ fontSize: { xs: '2.2rem', md: '2.7rem', lg: '3rem' } }} />
             </IconButton>
           </Stack>
 
@@ -271,6 +271,7 @@ const Hero = () => {
               margin: '0 auto',
               mb: 4,
               fontStyle: 'italic',
+              fontSize: { xs: '1.1rem', md: '1.35rem', lg: '1.5rem' },
             }}
           >
             "Building scalable solutions with a passion for innovation and continuous learning"
