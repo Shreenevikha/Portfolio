@@ -27,6 +27,19 @@ import {
   Lightbulb,
 } from '@mui/icons-material';
 
+const badgeIcons = {
+  'Web Development': <Lightbulb sx={{ fontSize: 18 }} />, // Example icons
+  'NLP': <PsychologyAlt sx={{ fontSize: 18 }} />,
+  'Cloud Computing': <Cloud sx={{ fontSize: 18 }} />,
+  'Gen AI': <Star sx={{ fontSize: 18 }} />,
+  'Agentic AI': <Star sx={{ fontSize: 18 }} />,
+  'Prompt Engineering': <Lightbulb sx={{ fontSize: 18 }} />,
+  'Analytical Skills': <Star sx={{ fontSize: 18 }} />,
+  'Adaptability': <Star sx={{ fontSize: 18 }} />,
+  'Communication': <Star sx={{ fontSize: 18 }} />,
+  'Problem Solving': <Star sx={{ fontSize: 18 }} />,
+};
+
 const skillCategories = [
   {
     title: "Programming Languages",
@@ -64,28 +77,17 @@ const skillCategories = [
       { name: 'Hibernate', level: 70 }
     ]
   },
-  {
-    title: "Tools & Platforms",
-    icon: <Build />,
-    color: "#ffd93d",
-    skills: [
-      { name: 'Git', level: 90 },
-      { name: 'VS Code', level: 95 },
-      { name: 'Postman', level: 85 },
-      { name: 'Docker', level: 70 },
-      { name: 'AWS', level: 75 }
-    ]
-  },
+  
   {
     title: "Areas of Interest",
     icon: <TrendingUp />,
     color: "#4ecdc4",
     skills: [
-      { name: 'Web Development', level: 95 },
-      { name: 'NLP', level: 80 },
-      { name: 'Cloud Computing', level: 85 },
-      { name: 'Gen AI', level: 75 },
-      { name: 'Agentic AI', level: 70 }
+      { name: 'Web Development' },
+      { name: 'NLP' },
+      { name: 'Cloud Computing' },
+      { name: 'Gen AI' },
+      { name: 'Agentic AI' }
     ]
   },
   {
@@ -93,11 +95,11 @@ const skillCategories = [
     icon: <Psychology />,
     color: "#ff8585",
     skills: [
-      { name: 'Prompt Engineering', level: 85 },
-      { name: 'Analytical Skills', level: 90 },
-      { name: 'Adaptability', level: 95 },
-      { name: 'Communication', level: 85 },
-      { name: 'Problem Solving', level: 90 }
+      { name: 'Prompt Engineering' },
+      { name: 'Analytical Skills' },
+      { name: 'Adaptability' },
+      { name: 'Communication' },
+      { name: 'Problem Solving' }
     ]
   }
 ];
@@ -109,11 +111,15 @@ const Skills = () => {
     threshold: 0.1,
   });
 
+  // Helper to check if category is badge board
+  const isBadgeBoard = (title) =>
+    title === 'Soft Skills' || title === 'Areas of Interest';
+
   return (
     <Box
       id="skills"
       sx={{
-        py: { xs: 8, md: 12 },
+        py: { xs: 7, md: 10 },
         background: `linear-gradient(135deg, ${theme.palette.background.default} 0%, ${theme.palette.mode === 'dark' ? '#0a0a0a' : '#f8fafc'} 100%)`,
         position: 'relative',
         '&::before': {
@@ -122,144 +128,156 @@ const Skills = () => {
           top: 0,
           left: 0,
           right: 0,
-          height: '6px',
+          height: '4px',
           background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
         },
       }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
         >
-          <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
+          <Box sx={{ textAlign: 'center', mb: { xs: 5, md: 7 } }}>
             <Typography
               variant="h2"
               sx={{
-                fontSize: { xs: '2rem', md: '2.5rem', lg: '3rem' },
+                fontSize: { xs: '1.7rem', md: '2.2rem', lg: '2.5rem' },
                 fontWeight: 900,
-                background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                mb: 3,
+                mb: 1.5,
                 textTransform: 'uppercase',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.08em',
                 position: 'relative',
                 '&::after': {
                   content: '""',
                   position: 'absolute',
-                  bottom: -15,
+                  bottom: -10,
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  width: 100,
-                  height: 6,
-                  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                  borderRadius: 3,
+                  width: 70,
+                  height: 3,
+                  background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                  borderRadius: 2,
                 },
               }}
             >
-              Technical Proficiency
+              My Skills
             </Typography>
             <Typography
-              variant="h5"
+              variant="h6"
               sx={{
                 color: theme.palette.text.secondary,
                 fontWeight: 400,
-                maxWidth: 700,
+                maxWidth: 500,
                 mx: 'auto',
-                lineHeight: 1.6,
-                fontSize: { xs: '1rem', md: '1.1rem' }
+                lineHeight: 1.5,
+                fontSize: { xs: '0.95rem', md: '1.05rem' }
               }}
             >
-              Advanced technical capabilities and industry expertise
+              A quick glance at my technical and professional strengths
             </Typography>
           </Box>
         </motion.div>
 
-        <Grid container spacing={4}>
+        <Grid container spacing={4} sx={{ mt: { xs: 2, md: 4 } }}>
           {skillCategories.map((category, categoryIndex) => (
-            <Grid item xs={12} md={6} lg={4} key={categoryIndex}>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+            <Grid item xs={12} sm={6} md={4} key={categoryIndex}>
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 4,
+                  borderRadius: 3,
+                  background: theme.palette.mode === 'dark'
+                    ? '#181a1b'
+                    : '#fff',
+                  border: `2px solid ${theme.palette.mode === 'dark' ? '#333' : '#e0e0e0'}`,
+                  boxShadow: 'none',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  minHeight: 180,
+                  mb: 2,
+                  position: 'relative',
+                  overflow: 'visible',
+                }}
               >
-                <Paper
-                  elevation={0}
-                  sx={{
-                    p: { xs: 4, md: 5 },
-                    borderRadius: 4,
-                    background: theme.palette.mode === 'dark' 
-                      ? 'linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)'
-                      : 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
-                    border: `2px solid ${theme.palette.mode === 'dark' ? '#333' : '#e2e8f0'}`,
-                    height: '100%',
-                    transition: 'all 0.3s ease',
-                    boxShadow: `0 8px 32px rgba(0, 0, 0, ${theme.palette.mode === 'dark' ? '0.3' : '0.1'})`,
-                    '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: `0 16px 48px rgba(${category.color}, 0.2)`,
-                      borderColor: category.color,
-                    }
-                  }}
-                >
-                  {/* Category Header */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
-                    <Box
-                      sx={{
-                        p: 2,
-                        borderRadius: 3,
-                        background: category.color + '20',
-                        color: category.color,
-                        mr: 2,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      {category.icon}
-                    </Box>
-                    <Typography
-                      variant="h4"
-                      sx={{
-                        fontWeight: 800,
-                        color: theme.palette.text.primary,
-                        fontSize: { xs: '1.2rem', md: '1.4rem' },
-                      }}
-                    >
-                      {category.title}
-                    </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <Box
+                    sx={{
+                      p: 1.2,
+                      borderRadius: 2,
+                      background: theme.palette.mode === 'dark' ? '#23272f' : '#f3f6fa',
+                      color: category.color,
+                      mr: 1.5,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: 22,
+                    }}
+                  >
+                    {category.icon}
                   </Box>
-
-                  {/* Skills List */}
-                  <Stack spacing={3}>
-                    {category.skills.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skillIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={inView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.5, delay: (categoryIndex * 0.1) + (skillIndex * 0.05) }}
-                      >
-                        <Box>
-                          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontWeight: 700,
+                      color: theme.palette.text.primary,
+                      fontSize: { xs: '1.1rem', md: '1.18rem' },
+                      letterSpacing: '0.04em',
+                    }}
+                  >
+                    {category.title}
+                  </Typography>
+                </Box>
+                <Box sx={{ width: '100%' }}>
+                  {['Soft Skills', 'Areas of Interest'].includes(category.title) ? (
+                    <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+                      {category.skills.map((skill, skillIndex) => (
+                        <Chip
+                          key={skillIndex}
+                          icon={badgeIcons[skill.name] || <Star sx={{ fontSize: 18 }} />}
+                          label={skill.name}
+                          sx={{
+                            bgcolor: theme.palette.mode === 'dark' ? '#23272f' : '#f3f6fa',
+                            color: category.color,
+                            fontWeight: 600,
+                            fontSize: '1rem',
+                            borderRadius: 99,
+                            px: 2.2,
+                            py: 1.2,
+                            mb: 1.2,
+                            mr: 1.2,
+                            border: `1.5px solid ${category.color}33`,
+                          }}
+                        />
+                      ))}
+                    </Stack>
+                  ) : (
+                    <Stack spacing={2}>
+                      {category.skills.map((skill, skillIndex) => (
+                        <Box key={skillIndex}>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
                             <Typography
-                              variant="body1"
+                              variant="body2"
                               sx={{
                                 fontWeight: 600,
-                                fontSize: { xs: '0.85rem', md: '0.9rem' },
+                                fontSize: { xs: '0.93rem', md: '1rem' },
                                 color: theme.palette.text.primary,
                               }}
                             >
                               {skill.name}
                             </Typography>
                             <Typography
-                              variant="body2"
+                              variant="caption"
                               sx={{
                                 fontWeight: 700,
-                                fontSize: { xs: '0.85rem', md: '0.9rem' },
+                                fontSize: '0.85rem',
                                 color: category.color,
                               }}
                             >
@@ -270,21 +288,21 @@ const Skills = () => {
                             variant="determinate"
                             value={skill.level}
                             sx={{
-                              height: 8,
-                              borderRadius: 4,
-                              backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#e2e8f0',
+                              height: 5,
+                              borderRadius: 3,
+                              backgroundColor: theme.palette.mode === 'dark' ? '#23272f' : '#e2e8f0',
                               '& .MuiLinearProgress-bar': {
                                 background: `linear-gradient(90deg, ${category.color} 0%, ${category.color}80 100%)`,
-                                borderRadius: 4,
+                                borderRadius: 3,
                               },
                             }}
                           />
                         </Box>
-                      </motion.div>
-                    ))}
-                  </Stack>
-                </Paper>
-              </motion.div>
+                      ))}
+                    </Stack>
+                  )}
+                </Box>
+              </Paper>
             </Grid>
           ))}
         </Grid>
@@ -318,7 +336,7 @@ const Skills = () => {
                     fontSize: { xs: '2rem', md: '2.5rem' },
                   }}
                 >
-                  Additional Tools & Technologies
+                   Tools & Technologies
                 </Typography>
                 <Typography
                   variant="body1"
@@ -334,7 +352,7 @@ const Skills = () => {
               </Box>
 
               <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap justifyContent="center">
-                {['Canva', 'Ms Excel', 'Cursor', 'Trae', 'Draw.io', 'Figma', 'Jira', 'Slack'].map((tool, index) => (
+                {['VS Code ','Git','Postman', 'Canva', 'Ms Excel', 'Cursor', 'Trae', 'Draw.io', 'Figma','Slack','n8n'].map((tool, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, scale: 0.8 }}
