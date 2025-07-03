@@ -4,13 +4,13 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Header from './Header';
 import Hero from './Hero';
-import About from './About';
-import Experience from './Experience';
-import Education from './Education';
-import Projects from './Projects';
-import Skills from './Skills';
-import Contact from './Contact';
-import Awards from './Awards';
+import About from './pages/About';
+import Experience from './pages/Experience';
+import Education from './pages/Education';
+import Projects from './pages/Projects';
+import Skills from './pages/Skills';
+import Contact from './pages/Contact';
+import Awards from './pages/Awards';
 import Footer from './Footer';
 
 const getDesignTokens = (mode) => ({
