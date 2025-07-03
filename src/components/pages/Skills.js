@@ -191,28 +191,39 @@ const Skills = () => {
               <Paper
                 elevation={0}
                 sx={{
-                  p: 4,
-                  borderRadius: 3,
+                  p: 5,
+                  borderRadius: 8,
                   background: theme.palette.mode === 'dark'
-                    ? '#181a1b'
+                    ? '#111'
                     : '#fff',
-                  border: `2px solid ${theme.palette.mode === 'dark' ? '#333' : '#e0e0e0'}`,
+                  border: `3px solid ${theme.palette.mode === 'dark' ? '#fff' : '#222'}`,
                   boxShadow: 'none',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  minHeight: 180,
-                  mb: 2,
+                  minHeight: 200,
+                  mb: 3,
                   position: 'relative',
                   overflow: 'visible',
                 }}
               >
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                {/* Title bar */}
+                <Box sx={{
+                  width: '100%',
+                  background: theme.palette.mode === 'dark' ? '#222' : '#f3f3f3',
+                  borderTopLeftRadius: 6,
+                  borderTopRightRadius: 6,
+                  px: 2,
+                  py: 1,
+                  mb: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                }}>
                   <Box
                     sx={{
                       p: 1.2,
                       borderRadius: 2,
-                      background: theme.palette.mode === 'dark' ? '#23272f' : '#f3f6fa',
+                      background: theme.palette.mode === 'dark' ? '#23272f' : '#e0e0e0',
                       color: category.color,
                       mr: 1.5,
                       display: 'flex',

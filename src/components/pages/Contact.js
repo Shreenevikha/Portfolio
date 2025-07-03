@@ -105,8 +105,11 @@ const Contact = () => {
             component="h2"
             align="center"
             sx={{
-              marginBottom: 6,
+              marginBottom: 2,
               position: 'relative',
+              fontWeight: 900,
+              fontSize: { xs: '2rem', md: '2.5rem' },
+              letterSpacing: '0.08em',
               '&::after': {
                 content: '""',
                 position: 'absolute',
@@ -122,9 +125,23 @@ const Contact = () => {
           >
             Get In Touch
           </Typography>
+          <Typography
+            align="center"
+            sx={{
+              color: theme.palette.text.secondary,
+              fontWeight: 400,
+              maxWidth: 600,
+              mx: 'auto',
+              mb: 6,
+              fontSize: { xs: '1rem', md: '1.1rem' },
+              lineHeight: 1.6,
+            }}
+          >
+            I'm always open to discussing new opportunities, innovative projects, and creative ideas. Feel free to reach out!
+          </Typography>
         </motion.div>
 
-        <Grid container spacing={6}>
+        <Grid container spacing={4}>
           {/* Contact Information */}
           <Grid item xs={12} md={6}>
             <motion.div
@@ -137,46 +154,28 @@ const Contact = () => {
                 sx={{
                   p: 4,
                   height: '100%',
-                  borderRadius: 3,
-                  background: theme.palette.background.paper,
-                  border: `1px solid ${theme.palette.divider}`,
+                  borderRadius: 4,
+                  background: theme.palette.mode === 'dark' ? '#181a1b' : '#fff',
+                  border: `2px solid ${theme.palette.mode === 'dark' ? '#333' : '#e0e0e0'}`,
+                  boxShadow: 'none',
                   position: 'relative',
                   overflow: 'hidden',
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '4px',
-                    background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                  },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 2,
                 }}
               >
                 <Typography
                   variant="h4"
                   sx={{
                     fontWeight: 700,
-                    mb: 4,
+                    mb: 2,
                     color: theme.palette.text.primary,
                   }}
                 >
                   Let's Connect
                 </Typography>
-                
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: '0.95rem',
-                    lineHeight: 1.8,
-                    color: theme.palette.text.secondary,
-                    mb: 4,
-                  }}
-                >
-                  I'm always open to discussing new opportunities, innovative projects, and creative ideas. Feel free to reach out!
-                </Typography>
-
-                <Stack spacing={3}>
+                <Stack spacing={3} sx={{ mb: 2 }}>
                   {contactInfo.map((info, index) => (
                     <motion.div
                       key={index}
@@ -190,8 +189,8 @@ const Contact = () => {
                           sx={{
                             p: 1.5,
                             borderRadius: 2,
-                            background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                            color: theme.palette.mode === 'dark' ? '#000' : '#fff',
+                            background: theme.palette.mode === 'dark' ? '#23272f' : '#f3f6fa',
+                            color: theme.palette.text.primary,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -240,15 +239,14 @@ const Contact = () => {
                     </motion.div>
                   ))}
                 </Stack>
-
                 {/* Social Links */}
-                <Box sx={{ mt: 4 }}>
+                <Box sx={{ mt: 2 }}>
                   <Typography
                     variant="h6"
                     sx={{
                       fontWeight: 600,
                       color: theme.palette.text.primary,
-                      mb: 2,
+                      mb: 1.5,
                     }}
                   >
                     Follow Me
@@ -269,13 +267,13 @@ const Contact = () => {
                           sx={{
                             color: theme.palette.text.primary,
                             border: `2px solid ${theme.palette.primary.main}`,
-                            width: 50,
-                            height: 50,
+                            width: 48,
+                            height: 48,
                             '&:hover': {
                               background: theme.palette.primary.main,
                               color: theme.palette.mode === 'dark' ? '#000' : '#fff',
-                              transform: 'translateY(-3px)',
-                              boxShadow: `0 8px 25px ${theme.palette.primary.main}60`,
+                              transform: 'translateY(-2px)',
+                              boxShadow: `0 4px 16px ${theme.palette.primary.main}40`,
                             },
                             transition: 'all 0.3s ease',
                           }}
@@ -302,34 +300,28 @@ const Contact = () => {
                 sx={{
                   p: 4,
                   height: '100%',
-                  borderRadius: 3,
-                  background: theme.palette.background.paper,
-                  border: `1px solid ${theme.palette.divider}`,
+                  borderRadius: 4,
+                  background: theme.palette.mode === 'dark' ? '#181a1b' : '#fff',
+                  border: `2px solid ${theme.palette.mode === 'dark' ? '#333' : '#e0e0e0'}`,
+                  boxShadow: 'none',
                   position: 'relative',
                   overflow: 'hidden',
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '4px',
-                    background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                  },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 2,
                 }}
               >
                 <Typography
                   variant="h4"
                   sx={{
                     fontWeight: 700,
-                    mb: 3,
+                    mb: 2,
                     color: theme.palette.text.primary,
                   }}
                 >
                   Send Message
                 </Typography>
-
-                <Box component="form" onSubmit={handleSubmit}>
+                <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
                       <TextField
