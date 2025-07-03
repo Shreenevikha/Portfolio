@@ -9,30 +9,74 @@ import {
   Grid,
   Stack,
   IconButton,
+  Divider,
   useTheme,
 } from '@mui/material';
-import { 
+import {
   Send as SendIcon,
   Email,
   Phone,
   LocationOn,
-  GitHub,
   LinkedIn,
-  Twitter
+  GitHub,
+  MailOutline,
 } from '@mui/icons-material';
-import { useInView } from 'react-intersection-observer';
-import { motion } from 'framer-motion';
+
+const contactInfo = [
+  {
+    icon: <Email />,
+    title: 'Email',
+    value: 'shreenevikha2003@gmail.com',
+    link: 'mailto:shreenevikha2003@gmail.com',
+    bg: '#ef476f',
+  },
+  {
+    icon: <Phone />,
+    title: 'Phone',
+    value: '+91 9080856291',
+    link: 'tel:+919080856291',
+    bg: '#06d6a0',
+  },
+  {
+    icon: <LocationOn />,
+    title: 'Location',
+    value: 'Coimbatore, TamilNadu',
+    link: null,
+    bg: '#118ab2',
+  },
+  {
+    icon: <LinkedIn />,
+    title: 'LinkedIn',
+    value: 'linkedin.com/in/shreenevikha-n',
+    link: 'https://linkedin.com/in/shreenevikha-n',
+    bg: '#2563eb',
+  },
+];
+
+const socialLinks = [
+  {
+    icon: <LinkedIn />,
+    url: 'https://linkedin.com/in/shreenevikha-n',
+    label: 'LinkedIn',
+  },
+  {
+    icon: <GitHub />,
+    url: 'https://github.com/',
+    label: 'GitHub',
+  },
+  {
+    icon: <MailOutline />,
+    url: 'mailto:shreenevikha2003@gmail.com',
+    label: 'Email',
+  },
+];
 
 const Contact = () => {
   const theme = useTheme();
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: '',
   });
 
@@ -45,404 +89,216 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Handle form submission logic here
     console.log('Form submitted:', formData);
   };
 
-  const contactInfo = [
-    {
-      icon: <Email />,
-      title: 'Email',
-      value: 'shreenevikha2003@gmail.com',
-      link: 'mailto:shreenevikha2003@gmail.com',
-    },
-    {
-      icon: <Phone />,
-      title: 'Phone',
-      value: '+91 9080856291',
-      link: 'tel:+919080856291',
-    },
-    {
-      icon: <LocationOn />,
-      title: 'Location',
-      value: 'Coimbatore, TamilNadu',
-      link: null,
-    },
-  ];
-
-  const socialLinks = [
-    { icon: <GitHub />, url: 'https://github.com/', label: 'GitHub' },
-    { icon: <LinkedIn />, url: 'https://linkedin.com/in/shreenevikha-n', label: 'LinkedIn' },
-    { icon: <Twitter />, url: 'https://twitter.com/', label: 'Twitter' },
-  ];
-
   return (
-    <Box
-      id="contact"
-      sx={{
-        py: 10,
-        background: theme.palette.background.default,
-        position: 'relative',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '4px',
-          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-        },
-      }}
-    >
+    <Box sx={{ minHeight: '100vh', bgcolor: theme.palette.background.default, py: { xs: 4, md: 8 } }}>
       <Container maxWidth="lg">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+        <Typography
+          variant="h3"
+          align="center"
+          sx={{
+            fontWeight: 800,
+            mb: 1,
+            color: 'primary.main',
+            letterSpacing: 1,
+          }}
         >
-          <Typography
-            variant="h2"
-            component="h2"
-            align="center"
-            sx={{
-              marginBottom: 2,
-              position: 'relative',
-              fontWeight: 900,
-              fontSize: { xs: '2rem', md: '2.5rem' },
-              letterSpacing: '0.08em',
-              '&::after': {
-                content: '""',
-                position: 'absolute',
-                bottom: -10,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: 80,
-                height: 4,
-                background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                borderRadius: 2,
-              },
-            }}
-          >
-            Get In Touch
-          </Typography>
-          <Typography
-            align="center"
-            sx={{
-              color: theme.palette.text.secondary,
-              fontWeight: 400,
-              maxWidth: 600,
-              mx: 'auto',
-              mb: 6,
-              fontSize: { xs: '1rem', md: '1.1rem' },
-              lineHeight: 1.6,
-            }}
-          >
-            I'm always open to discussing new opportunities, innovative projects, and creative ideas. Feel free to reach out!
-          </Typography>
-        </motion.div>
-
-        <Grid container spacing={4}>
-          {/* Contact Information */}
+          Let's Work Together
+        </Typography>
+        <Typography
+          align="center"
+          sx={{
+            mb: 5,
+            color: theme.palette.text.secondary,
+            fontSize: { xs: '1rem', md: '1.15rem' },
+            maxWidth: 600,
+            mx: 'auto',
+          }}
+        >
+          Ready to start your next project? Let's discuss how I can help bring your ideas to life.
+        </Typography>
+        <Grid container spacing={4} alignItems="flex-start">
+          {/* Left: Contact Info */}
           <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <Paper
-                elevation={0}
-                sx={{
-                  p: 4,
-                  height: '100%',
-                  borderRadius: 4,
-                  background: theme.palette.mode === 'dark' ? '#181a1b' : '#fff',
-                  border: `2px solid ${theme.palette.mode === 'dark' ? '#333' : '#e0e0e0'}`,
-                  boxShadow: 'none',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 2,
-                }}
-              >
-                <Typography
-                  variant="h4"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 2,
-                    color: theme.palette.text.primary,
-                  }}
-                >
-                  Let's Connect
-                </Typography>
-                <Stack spacing={3} sx={{ mb: 2 }}>
-                  {contactInfo.map((info, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -30 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+            <Box sx={{ pr: { md: 6 } }}>
+              <Stack spacing={3}>
+                {contactInfo.map((info, idx) => (
+                  <Stack direction="row" spacing={2} alignItems="center" key={idx}>
+                    <Box
+                      sx={{
+                        bgcolor: info.bg,
+                        color: '#fff',
+                        p: 1.5,
+                        borderRadius: 2,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minWidth: 44,
+                        height: 44,
+                        fontSize: 24,
+                      }}
                     >
-                      <Stack direction="row" spacing={2} alignItems="center">
-                        <Paper
-                          elevation={0}
-                          sx={{
-                            p: 1.5,
-                            borderRadius: 2,
-                            background: theme.palette.mode === 'dark' ? '#23272f' : '#f3f6fa',
-                            color: theme.palette.text.primary,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            minWidth: 50,
-                            height: 50,
-                          }}
-                        >
-                          {info.icon}
-                        </Paper>
-                        <Box>
-                          <Typography
-                            variant="h6"
-                            sx={{
-                              fontWeight: 600,
-                              color: theme.palette.text.primary,
-                              mb: 0.5,
-                            }}
-                          >
-                            {info.title}
-                          </Typography>
-                          {info.link ? (
-                            <Typography
-                              component="a"
-                              href={info.link}
-                              variant="body1"
-                              sx={{
-                                color: theme.palette.text.secondary,
-                                textDecoration: 'none',
-                                '&:hover': {
-                                  color: theme.palette.primary.main,
-                                },
-                              }}
-                            >
-                              {info.value}
-                            </Typography>
-                          ) : (
-                            <Typography
-                              variant="body1"
-                              sx={{ color: theme.palette.text.secondary }}
-                            >
-                              {info.value}
-                            </Typography>
-                          )}
-                        </Box>
-                      </Stack>
-                    </motion.div>
-                  ))}
-                </Stack>
-                {/* Social Links */}
-                <Box sx={{ mt: 2 }}>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: 600,
-                      color: theme.palette.text.primary,
-                      mb: 1.5,
-                    }}
-                  >
-                    Follow Me
-                  </Typography>
-                  <Stack direction="row" spacing={2}>
-                    {socialLinks.map((social, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={inView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                      >
-                        <IconButton
-                          href={social.url}
+                      {info.icon}
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                        {info.title}
+                      </Typography>
+                      {info.link ? (
+                        <Typography
+                          component="a"
+                          href={info.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          aria-label={social.label}
+                          variant="body2"
                           sx={{
-                            color: theme.palette.text.primary,
-                            border: `2px solid ${theme.palette.primary.main}`,
-                            width: 48,
-                            height: 48,
-                            '&:hover': {
-                              background: theme.palette.primary.main,
-                              color: theme.palette.mode === 'dark' ? '#000' : '#fff',
-                              transform: 'translateY(-2px)',
-                              boxShadow: `0 4px 16px ${theme.palette.primary.main}40`,
-                            },
-                            transition: 'all 0.3s ease',
+                            color: 'text.secondary',
+                            textDecoration: 'none',
+                            wordBreak: 'break-all',
+                            '&:hover': { color: 'primary.main' },
                           }}
                         >
-                          {social.icon}
-                        </IconButton>
-                      </motion.div>
-                    ))}
+                          {info.value}
+                        </Typography>
+                      ) : (
+                        <Typography variant="body2" color="text.secondary">
+                          {info.value}
+                        </Typography>
+                      )}
+                    </Box>
                   </Stack>
-                </Box>
-              </Paper>
-            </motion.div>
+                ))}
+              </Stack>
+              <Divider sx={{ my: 4 }} />
+              <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                Follow Me
+              </Typography>
+              <Stack direction="row" spacing={2}>
+                {socialLinks.map((social, idx) => (
+                  <IconButton
+                    key={idx}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    sx={{
+                      bgcolor: theme.palette.mode === 'dark' ? theme.palette.background.paper : '#f3f4f6',
+                      color: 'text.primary',
+                      border: `1px solid ${theme.palette.divider}`,
+                      width: 40,
+                      height: 40,
+                      '&:hover': {
+                        bgcolor: 'primary.main',
+                        color: '#fff',
+                        borderColor: 'primary.main',
+                      },
+                      transition: 'all 0.2s',
+                    }}
+                  >
+                    {social.icon}
+                  </IconButton>
+                ))}
+              </Stack>
+            </Box>
           </Grid>
-
-          {/* Contact Form */}
+          {/* Right: Contact Form */}
           <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
+            <Paper
+              elevation={3}
+              sx={{
+                borderRadius: 3,
+                p: { xs: 3, md: 4 },
+                bgcolor: theme.palette.background.paper,
+                boxShadow: '0 4px 24px 0 rgba(0,0,0,0.08)',
+                mt: 0,
+                mb: 0,
+              }}
             >
-              <Paper
-                elevation={0}
-                sx={{
-                  p: 4,
-                  height: '100%',
-                  borderRadius: 4,
-                  background: theme.palette.mode === 'dark' ? '#181a1b' : '#fff',
-                  border: `2px solid ${theme.palette.mode === 'dark' ? '#333' : '#e0e0e0'}`,
-                  boxShadow: 'none',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 2,
-                }}
-              >
-                <Typography
-                  variant="h4"
-                  sx={{
-                    fontWeight: 700,
-                    mb: 2,
-                    color: theme.palette.text.primary,
-                  }}
-                >
-                  Send Message
-                </Typography>
-                <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '& fieldset': {
-                              borderColor: theme.palette.divider,
-                            },
-                            '&:hover fieldset': {
-                              borderColor: theme.palette.primary.main,
-                            },
-                            '&.Mui-focused fieldset': {
-                              borderColor: theme.palette.primary.main,
-                            },
-                          },
-                          '& .MuiInputLabel-root': {
-                            color: theme.palette.text.secondary,
-                            '&.Mui-focused': {
-                              color: theme.palette.primary.main,
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '& fieldset': {
-                              borderColor: theme.palette.divider,
-                            },
-                            '&:hover fieldset': {
-                              borderColor: theme.palette.primary.main,
-                            },
-                            '&.Mui-focused fieldset': {
-                              borderColor: theme.palette.primary.main,
-                            },
-                          },
-                          '& .MuiInputLabel-root': {
-                            color: theme.palette.text.secondary,
-                            '&.Mui-focused': {
-                              color: theme.palette.primary.main,
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        label="Message"
-                        name="message"
-                        multiline
-                        rows={6}
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        sx={{
-                          '& .MuiOutlinedInput-root': {
-                            '& fieldset': {
-                              borderColor: theme.palette.divider,
-                            },
-                            '&:hover fieldset': {
-                              borderColor: theme.palette.primary.main,
-                            },
-                            '&.Mui-focused fieldset': {
-                              borderColor: theme.palette.primary.main,
-                            },
-                          },
-                          '& .MuiInputLabel-root': {
-                            color: theme.palette.text.secondary,
-                            '&.Mui-focused': {
-                              color: theme.palette.primary.main,
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        size="large"
-                        startIcon={<SendIcon />}
-                        sx={{
-                          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                          color: theme.palette.mode === 'dark' ? '#000' : '#fff',
-                          fontWeight: 700,
-                          fontSize: '0.95rem',
-                          px: 4,
-                          py: 1.5,
-                          borderRadius: 2,
-                          textTransform: 'none',
-                          '&:hover': {
-                            background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
-                            transform: 'translateY(-2px)',
-                            boxShadow: `0 8px 25px ${theme.palette.primary.main}60`,
-                          },
-                          transition: 'all 0.3s ease',
-                        }}
-                      >
-                        Send Message
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Paper>
-            </motion.div>
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 3 }}>
+                Send me a message
+              </Typography>
+              <Box component="form" onSubmit={handleSubmit}>
+                <Stack spacing={2}>
+                  <TextField
+                    fullWidth
+                    label="Full Name *"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your full name"
+                  />
+                  <TextField
+                    fullWidth
+                    label="Email Address *"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="your.email@example.com"
+                  />
+                  <TextField
+                    fullWidth
+                    label="Subject *"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    placeholder="What's this about?"
+                  />
+                  <TextField
+                    fullWidth
+                    label="Message *"
+                    name="message"
+                    multiline
+                    minRows={4}
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    placeholder="Tell me more about your project or inquiry..."
+                  />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    fullWidth
+                    startIcon={<SendIcon />}
+                    sx={{
+                      background: 'linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%)',
+                      color: '#fff',
+                      fontWeight: 700,
+                      fontSize: '1rem',
+                      py: 1.5,
+                      borderRadius: 2,
+                      mt: 1,
+                      textTransform: 'none',
+                      boxShadow: 'none',
+                      '&:hover': {
+                        background: 'linear-gradient(90deg, #8b5cf6 0%, #3b82f6 100%)',
+                        boxShadow: '0 2px 8px 0 rgba(59,130,246,0.15)',
+                      },
+                    }}
+                  >
+                    Send Message
+                  </Button>
+                  <Box
+                    sx={{
+                      mt: 2,
+                      p: 2,
+                      bgcolor: theme.palette.mode === 'dark' ? '#23272f' : '#e0e7ff',
+                      borderRadius: 2,
+                    }}
+                  >
+                    <Typography variant="body2" sx={{ color: theme.palette.mode === 'dark' ? '#fff' : '#3730a3' }}>
+                      <strong>Note:</strong> This is a styled contact form for portfolio demonstration. For direct contact, please use the email or LinkedIn links above.
+                    </Typography>
+                  </Box>
+                </Stack>
+              </Box>
+            </Paper>
           </Grid>
         </Grid>
       </Container>
@@ -450,4 +306,4 @@ const Contact = () => {
   );
 };
 
-export default Contact; 
+export default Contact;
