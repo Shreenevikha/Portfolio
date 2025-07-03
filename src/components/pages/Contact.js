@@ -167,7 +167,7 @@ const Contact = () => {
                 <Typography
                   variant="body1"
                   sx={{
-                    fontSize: '1.1rem',
+                    fontSize: '0.95rem',
                     lineHeight: 1.8,
                     color: theme.palette.text.secondary,
                     mb: 4,
@@ -431,7 +431,7 @@ const Contact = () => {
                           background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                           color: theme.palette.mode === 'dark' ? '#000' : '#fff',
                           fontWeight: 700,
-                          fontSize: '1.1rem',
+                          fontSize: '0.95rem',
                           px: 4,
                           py: 1.5,
                           borderRadius: 2,

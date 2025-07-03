@@ -74,7 +74,7 @@ const Header = () => {
           fontWeight: 800,
           color: theme.palette.primary.main,
           mb: 3,
-          fontSize: '1.5rem',
+                          fontSize: '1.2rem',
         }}
       >
         SHREENEVIKHA N
@@ -90,7 +90,7 @@ const Header = () => {
               justifyContent: 'flex-start',
               color: activeSection === item.to ? 'primary.main' : theme.palette.text.primary,
               fontWeight: 600,
-              fontSize: '1.1rem',
+              fontSize: '0.95rem',
               px: 3,
               py: 2,
               borderRadius: 0,
@@ -156,10 +156,10 @@ const Header = () => {
                     variant="text"
                     disableRipple
                     sx={{
-                      color: activeSection === item.to ? 'primary.main' : theme.palette.text.primary,
-                      fontWeight: 600,
-                      fontSize: '1.1rem',
-                      px: 2.5,
+                                          color: activeSection === item.to ? 'primary.main' : theme.palette.text.primary,
+                    fontWeight: 600,
+                    fontSize: '0.95rem',
+                    px: 2.5,
                       py: 1.2,
                       borderRadius: 0,
                       background: 'none !important',

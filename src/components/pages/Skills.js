@@ -138,7 +138,7 @@ const Skills = () => {
             <Typography
               variant="h2"
               sx={{
-                fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
+                fontSize: { xs: '2rem', md: '2.5rem', lg: '3rem' },
                 fontWeight: 900,
                 background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                 backgroundClip: 'text',
@@ -171,7 +171,7 @@ const Skills = () => {
                 maxWidth: 700,
                 mx: 'auto',
                 lineHeight: 1.6,
-                fontSize: { xs: '1.2rem', md: '1.4rem' }
+                fontSize: { xs: '1rem', md: '1.1rem' }
               }}
             >
               Advanced technical capabilities and industry expertise
@@ -227,7 +227,7 @@ const Skills = () => {
                       sx={{
                         fontWeight: 800,
                         color: theme.palette.text.primary,
-                        fontSize: { xs: '1.5rem', md: '1.75rem' },
+                        fontSize: { xs: '1.2rem', md: '1.4rem' },
                       }}
                     >
                       {category.title}
@@ -249,7 +249,7 @@ const Skills = () => {
                               variant="body1"
                               sx={{
                                 fontWeight: 600,
-                                fontSize: { xs: '1rem', md: '1.1rem' },
+                                fontSize: { xs: '0.85rem', md: '0.9rem' },
                                 color: theme.palette.text.primary,
                               }}
                             >
@@ -259,7 +259,7 @@ const Skills = () => {
                               variant="body2"
                               sx={{
                                 fontWeight: 700,
-                                fontSize: { xs: '0.9rem', md: '1rem' },
+                                fontSize: { xs: '0.85rem', md: '0.9rem' },
                                 color: category.color,
                               }}
                             >
@@ -324,7 +324,7 @@ const Skills = () => {
                   variant="body1"
                   sx={{
                     color: theme.palette.text.secondary,
-                    fontSize: { xs: '1.1rem', md: '1.2rem' },
+                    fontSize: { xs: '0.95rem', md: '1rem' },
                     maxWidth: 600,
                     mx: 'auto',
                   }}
@@ -348,7 +348,7 @@ const Skills = () => {
                         bgcolor: theme.palette.mode === 'dark' ? '#333' : '#f1f5f9',
                         color: theme.palette.text.primary,
                         fontWeight: 600,
-                        fontSize: { xs: '0.95rem', md: '1rem' },
+                        fontSize: { xs: '0.85rem', md: '0.9rem' },
                         border: `1px solid ${theme.palette.divider}`,
                         px: 2,
                         py: 1,

@@ -85,7 +85,7 @@ const Hero = () => {
             variant="h1"
             sx={{
               fontWeight: 900,
-              fontSize: { xs: '3.5rem', md: '5rem', lg: '6.5rem' },
+              fontSize: { xs: '2.5rem', md: '3.2rem', lg: '4rem' },
               textTransform: 'uppercase',
               letterSpacing: '0.15em',
               lineHeight: 0.85,
@@ -116,7 +116,7 @@ const Hero = () => {
                 variant="h3"
                 sx={{ 
                   fontWeight: 700,
-                  fontSize: { xs: '2rem', md: '2.5rem', lg: '3rem' },
+                  fontSize: { xs: '1.5rem', md: '1.8rem', lg: '2rem' },
                   color: theme.palette.text.primary,
                   mb: 2,
                   textShadow: '0 2px 4px rgba(0,0,0,0.3)',
@@ -146,28 +146,28 @@ const Hero = () => {
             sx={{ mb: 4 }}
           >
             <Stack direction="row" spacing={2} alignItems="center">
-              <LocationOn sx={{ color: theme.palette.primary.main, fontSize: { xs: '1.7rem', md: '2.1rem', lg: '2.3rem' } }} />
-              <Typography variant="body1" sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.25rem', lg: '1.35rem' } }}>
+              <LocationOn sx={{ color: theme.palette.primary.main, fontSize: { xs: '1.4rem', md: '1.6rem', lg: '1.8rem' } }} />
+              <Typography variant="body1" sx={{ fontWeight: 600, fontSize: { xs: '0.95rem', md: '1rem', lg: '1.1rem' } }}>
                 Coimbatore, TamilNadu
               </Typography>
             </Stack>
             
             <Stack direction="row" spacing={2} alignItems="center">
-              <Phone sx={{ color: theme.palette.primary.main, fontSize: { xs: '1.7rem', md: '2.1rem', lg: '2.3rem' } }} />
-              <Typography variant="body1" sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.25rem', lg: '1.35rem' } }}>
+              <Phone sx={{ color: theme.palette.primary.main, fontSize: { xs: '1.4rem', md: '1.6rem', lg: '1.8rem' } }} />
+              <Typography variant="body1" sx={{ fontWeight: 600, fontSize: { xs: '0.95rem', md: '1rem', lg: '1.1rem' } }}>
                 +91 9080856291
               </Typography>
             </Stack>
             
             <Stack direction="row" spacing={2} alignItems="center">
-              <Email sx={{ color: theme.palette.primary.main, fontSize: { xs: '1.7rem', md: '2.1rem', lg: '2.3rem' } }} />
+              <Email sx={{ color: theme.palette.primary.main, fontSize: { xs: '1.4rem', md: '1.6rem', lg: '1.8rem' } }} />
               <Typography 
                 variant="body1" 
                 component="a"
                 href="mailto:shreenevikha2003@gmail.com"
                 sx={{ 
                   fontWeight: 600,
-                  fontSize: { xs: '1.1rem', md: '1.25rem', lg: '1.35rem' },
+                  fontSize: { xs: '0.95rem', md: '1rem', lg: '1.1rem' },
                   color: theme.palette.text.primary,
                   textDecoration: 'none',
                   '&:hover': {
@@ -205,7 +205,7 @@ const Hero = () => {
                 transition: 'all 0.3s ease',
               }}
             >
-              <GitHub sx={{ fontSize: { xs: '2.2rem', md: '2.7rem', lg: '3rem' } }} />
+              <GitHub sx={{ fontSize: { xs: '1.8rem', md: '2rem', lg: '2.2rem' } }} />
             </IconButton>
             
             <IconButton
@@ -226,7 +226,7 @@ const Hero = () => {
                 transition: 'all 0.3s ease',
               }}
             >
-              <LinkedIn sx={{ fontSize: { xs: '2.2rem', md: '2.7rem', lg: '3rem' } }} />
+              <LinkedIn sx={{ fontSize: { xs: '1.8rem', md: '2rem', lg: '2.2rem' } }} />
             </IconButton>
           </Stack>
 
@@ -243,7 +243,7 @@ const Hero = () => {
                 border: `2px solid ${theme.palette.primary.main}`,
                 color: theme.palette.primary.main,
                 fontWeight: 600,
-                fontSize: '1.1rem',
+                fontSize: '0.95rem',
                 px: 4,
                 py: 1.5,
                 borderRadius: 2,
@@ -271,7 +271,7 @@ const Hero = () => {
               margin: '0 auto',
               mb: 4,
               fontStyle: 'italic',
-              fontSize: { xs: '1.1rem', md: '1.35rem', lg: '1.5rem' },
+              fontSize: { xs: '0.95rem', md: '1.1rem', lg: '1.2rem' },
             }}
           >
             "Building scalable solutions with a passion for innovation and continuous learning"

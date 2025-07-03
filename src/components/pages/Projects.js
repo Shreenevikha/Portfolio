@@ -122,7 +122,7 @@ const Projects = () => {
             <Typography 
               variant="h2" 
               sx={{ 
-                fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
+                fontSize: { xs: '2rem', md: '2.5rem', lg: '3rem' },
                 fontWeight: 900,
                 background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                 backgroundClip: 'text',
@@ -221,7 +221,7 @@ const Projects = () => {
                           sx={{ 
                             color: theme.palette.text.secondary,
                             fontWeight: 500,
-                            fontSize: { xs: '1rem', md: '1.1rem' }
+                            fontSize: { xs: '0.9rem', md: '1rem' }
                           }}
                         >
                           {project.subtitle}
@@ -261,7 +261,7 @@ const Projects = () => {
                       variant="body1" 
                       sx={{ 
                         color: theme.palette.text.secondary,
-                        fontSize: { xs: '1rem', md: '1.1rem' },
+                        fontSize: { xs: '0.9rem', md: '1rem' },
                         lineHeight: 1.7,
                         mb: 3,
                         fontWeight: 400
