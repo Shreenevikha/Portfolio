@@ -24,51 +24,37 @@ import {
   Storage,
   Psychology,
   TrendingUp,
-  Security
+  Security,
+  AccountBalance,
+  Dashboard,
+  Api,
+  Web
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
 const projects = [
   {
-    title: 'Healthcare Master Intelligence Dashboard',
-    subtitle: 'Data-Driven Healthcare Analytics Platform',
-    tech: ['Python', 'Dash', 'Plotly', 'Pandas', 'NumPy'],
-    description: 'Designed and developed a comprehensive healthcare analytics dashboard that provides real-time insights for medical decision-making. Features interactive visualizations, predictive analytics, and automated reporting systems.',
-    category: 'Data Analytics',
-    icon: <TrendingUp />,
-    status: 'Completed',
-    image: '/api/placeholder/400/250'
-  },
-  {
     title: 'Biz Books - Modern Accounting Platform',
     subtitle: 'Next-Generation Financial Management Tool',
-    tech: ['React', 'Node.js', 'MongoDB', 'Express', 'Microservices'],
-    description: 'Revolutionary accounting platform with hybrid UI that seamlessly transitions between modern and traditional interfaces. Built with microservices architecture for scalability and real-time financial data processing.',
+    tech: ['Next.js', 'Node.js', 'MongoDB',  'API Integration', 'UI/UX Design'],
+    description: 'Currently developing a revolutionary accounting platform with hybrid UI that seamlessly transitions between modern and traditional interfaces. Built with MERN stack architecture for scalability and real-time financial data processing. Features include comprehensive ERP functionality, user-friendly interface design, and advanced API integration.',
     category: 'Fintech',
-    icon: <Storage />,
+    icon: <AccountBalance />,
     status: 'In Progress',
     image: '/api/placeholder/400/250'
   },
   {
-    title: 'AI-Powered Code Review Assistant',
-    subtitle: 'Intelligent Development Workflow Enhancement',
-    tech: ['Python', 'TensorFlow', 'FastAPI', 'React', 'Docker'],
-    description: 'Advanced code review system using machine learning to analyze code quality, detect potential bugs, and suggest improvements. Integrates with popular development platforms and provides detailed analytics.',
-    category: 'AI/ML',
-    icon: <Psychology />,
-    status: 'Planning',
-    image: '/api/placeholder/400/250'
-  },
-  {
-    title: 'Secure Cloud Storage Solution',
-    subtitle: 'Enterprise-Grade Data Protection Platform',
-    tech: ['AWS', 'React', 'Node.js', 'PostgreSQL', 'Redis'],
-    description: 'End-to-end encrypted cloud storage solution with advanced security features, real-time collaboration, and automated backup systems. Designed for enterprise-level data protection and compliance.',
-    category: 'Security',
-    icon: <Security />,
+    title: 'Healthcare Analytics Dashboard',
+    subtitle: 'Data-Driven Medical Intelligence Platform',
+    tech: ['Python', 'Dash', 'Plotly', 'Pandas', 'NumPy', 'Data Visualization'],
+    description: 'Designed and developed a comprehensive healthcare analytics dashboard that provides real-time insights for medical decision-making. Features interactive visualizations, predictive analytics, automated reporting systems, and data-driven insights for healthcare professionals.',
+    category: 'Data Analytics',
+    icon: <Dashboard />,
     status: 'Completed',
     image: '/api/placeholder/400/250'
-  }
+  },
+ 
+  
 ];
 
 const getStatusColor = (status, theme) => {
@@ -93,9 +79,10 @@ const Projects = () => {
     <Box 
       id="projects" 
       sx={{ 
-        py: { xs: 8, md: 12 }, 
+        py: { xs: 6, md: 10 }, 
         background: `linear-gradient(135deg, ${theme.palette.background.default} 0%, ${theme.palette.mode === 'dark' ? '#0a0a0a' : '#f8fafc'} 100%)`,
         position: 'relative',
+        minHeight: '100vh',
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -110,9 +97,9 @@ const Projects = () => {
         }
       }}
     >
-      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         {/* Section Header */}
-        <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 5, md: 7 } }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,27 +109,29 @@ const Projects = () => {
             <Typography 
               variant="h2" 
               sx={{ 
-                fontSize: { xs: '2rem', md: '2.5rem', lg: '3rem' },
-                fontWeight: 900,
+                fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+                fontWeight: 800,
                 background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 mb: 2,
                 textTransform: 'uppercase',
-                letterSpacing: '0.1em'
+                letterSpacing: '0.05em',
+                lineHeight: 1.2
               }}
             >
               Portfolio Showcase
             </Typography>
             <Typography 
-              variant="h5" 
+              variant="h6" 
               sx={{ 
                 color: theme.palette.text.secondary,
                 fontWeight: 400,
                 maxWidth: 600,
                 mx: 'auto',
-                lineHeight: 1.6
+                lineHeight: 1.5,
+                fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' }
               }}
             >
               Demonstrating excellence through innovative solutions and cutting-edge technology
@@ -151,7 +140,7 @@ const Projects = () => {
         </Box>
 
         {/* Projects Grid */}
-        <Grid container spacing={4}>
+        <Grid container spacing={3}>
           {projects.map((project, index) => (
             <Grid item xs={12} lg={6} key={index}>
               <motion.div
@@ -168,14 +157,14 @@ const Projects = () => {
                     background: theme.palette.mode === 'dark' 
                       ? 'linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)'
                       : 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
-                    border: `2px solid ${theme.palette.mode === 'dark' ? '#333' : '#e2e8f0'}`,
-                    borderRadius: 4,
+                    border: `1px solid ${theme.palette.mode === 'dark' ? '#333' : '#e2e8f0'}`,
+                    borderRadius: 3,
                     overflow: 'hidden',
                     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                    transform: hoveredProject === index ? 'translateY(-12px) scale(1.02)' : 'translateY(0) scale(1)',
+                    transform: hoveredProject === index ? 'translateY(-8px) scale(1.01)' : 'translateY(0) scale(1)',
                     boxShadow: hoveredProject === index 
-                      ? `0 20px 40px rgba(${theme.palette.primary.main}, 0.3)`
-                      : `0 8px 32px rgba(0, 0, 0, ${theme.palette.mode === 'dark' ? '0.3' : '0.1'})`,
+                      ? `0 12px 32px rgba(${theme.palette.primary.main}, 0.2)`
+                      : `0 4px 20px rgba(0, 0, 0, ${theme.palette.mode === 'dark' ? '0.2' : '0.08'})`,
                     '&:hover': {
                       borderColor: theme.palette.primary.main,
                     }
@@ -184,7 +173,7 @@ const Projects = () => {
                   {/* Project Header */}
                   <Box
                     sx={{
-                      background: `linear-gradient(135deg, ${theme.palette.primary.main}15 0%, ${theme.palette.secondary.main}15 100%)`,
+                      background: `linear-gradient(135deg, ${theme.palette.primary.main}10 0%, ${theme.palette.secondary.main}10 100%)`,
                       p: 3,
                       borderBottom: `1px solid ${theme.palette.divider}`
                     }}
@@ -198,17 +187,19 @@ const Projects = () => {
                           color: '#fff',
                           display: 'flex',
                           alignItems: 'center',
-                          justifyContent: 'center'
+                          justifyContent: 'center',
+                          minWidth: 50,
+                          height: 50
                         }}
                       >
                         {project.icon}
                       </Box>
                       <Box sx={{ flexGrow: 1 }}>
                         <Typography 
-                          variant="h4" 
+                          variant="h5" 
                           sx={{ 
-                            fontWeight: 800,
-                            fontSize: { xs: '1.5rem', md: '1.75rem' },
+                            fontWeight: 700,
+                            fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem', lg: '1.4rem' },
                             color: theme.palette.text.primary,
                             mb: 0.5,
                             lineHeight: 1.2
@@ -217,11 +208,12 @@ const Projects = () => {
                           {project.title}
                         </Typography>
                         <Typography 
-                          variant="h6" 
+                          variant="subtitle1" 
                           sx={{ 
                             color: theme.palette.text.secondary,
                             fontWeight: 500,
-                            fontSize: { xs: '0.9rem', md: '1rem' }
+                            fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem' },
+                            lineHeight: 1.3
                           }}
                         >
                           {project.subtitle}
@@ -236,20 +228,22 @@ const Projects = () => {
                         sx={{
                           bgcolor: theme.palette.mode === 'dark' ? '#333' : '#e0ffe6',
                           color: theme.palette.primary.main,
-                          fontWeight: 700,
-                          fontSize: '0.9rem',
-                          px: 2
+                          fontWeight: 600,
+                          fontSize: '0.8rem',
+                          px: 1.5,
+                          py: 0.5
                         }}
                       />
                       <Chip
                         label={project.status}
                         sx={{
-                          bgcolor: getStatusColor(project.status, theme) + '20',
+                          bgcolor: getStatusColor(project.status, theme) + '15',
                           color: getStatusColor(project.status, theme),
-                          fontWeight: 700,
-                          fontSize: '0.9rem',
-                          px: 2,
-                          border: `1px solid ${getStatusColor(project.status, theme)}40`
+                          fontWeight: 600,
+                          fontSize: '0.8rem',
+                          px: 1.5,
+                          py: 0.5,
+                          border: `1px solid ${getStatusColor(project.status, theme)}30`
                         }}
                       />
                     </Stack>
@@ -261,8 +255,8 @@ const Projects = () => {
                       variant="body1" 
                       sx={{ 
                         color: theme.palette.text.secondary,
-                        fontSize: { xs: '0.9rem', md: '1rem' },
-                        lineHeight: 1.7,
+                        fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem' },
+                        lineHeight: 1.6,
                         mb: 3,
                         fontWeight: 400
                       }}
@@ -273,12 +267,12 @@ const Projects = () => {
                     {/* Tech Stack */}
                     <Box sx={{ mb: 3 }}>
                       <Typography 
-                        variant="h6" 
+                        variant="subtitle1" 
                         sx={{ 
-                          fontWeight: 700,
+                          fontWeight: 600,
                           color: theme.palette.text.primary,
                           mb: 2,
-                          fontSize: '1.1rem'
+                          fontSize: { xs: '0.9rem', sm: '1rem' }
                         }}
                       >
                         Technologies Used
@@ -288,15 +282,17 @@ const Projects = () => {
                           <Chip
                             key={techIndex}
                             label={tech}
-                            icon={<Code sx={{ fontSize: '1rem' }} />}
+                            icon={<Code sx={{ fontSize: '0.9rem' }} />}
                             sx={{
                               bgcolor: theme.palette.mode === 'dark' ? '#2a2a2a' : '#f1f5f9',
                               color: theme.palette.text.primary,
-                              fontWeight: 600,
-                              fontSize: '0.9rem',
+                              fontWeight: 500,
+                              fontSize: '0.75rem',
                               border: `1px solid ${theme.palette.divider}`,
+                              px: 1,
+                              py: 0.25,
                               '&:hover': {
-                                bgcolor: theme.palette.primary.main + '20',
+                                bgcolor: theme.palette.primary.main + '15',
                                 borderColor: theme.palette.primary.main
                               }
                             }}
@@ -315,13 +311,13 @@ const Projects = () => {
                         sx={{
                           flex: 1,
                           py: 1.5,
-                          fontWeight: 700,
-                          fontSize: '1rem',
+                          fontWeight: 600,
+                          fontSize: '0.9rem',
                           background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                           '&:hover': {
                             background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.secondary.dark} 100%)`,
-                            transform: 'translateY(-2px)',
-                            boxShadow: `0 8px 25px ${theme.palette.primary.main}40`
+                            transform: 'translateY(-1px)',
+                            boxShadow: `0 6px 20px ${theme.palette.primary.main}30`
                           }
                         }}
                       >
@@ -333,14 +329,14 @@ const Projects = () => {
                         sx={{
                           flex: 1,
                           py: 1.5,
-                          fontWeight: 700,
-                          fontSize: '1rem',
+                          fontWeight: 600,
+                          fontSize: '0.9rem',
                           borderColor: theme.palette.primary.main,
                           color: theme.palette.primary.main,
                           '&:hover': {
                             borderColor: theme.palette.primary.dark,
-                            background: theme.palette.primary.main + '10',
-                            transform: 'translateY(-2px)'
+                            background: theme.palette.primary.main + '08',
+                            transform: 'translateY(-1px)'
                           }
                         }}
                       >
@@ -363,11 +359,12 @@ const Projects = () => {
             viewport={{ once: true }}
           >
             <Typography 
-              variant="h5" 
+              variant="h6" 
               sx={{ 
                 color: theme.palette.text.secondary,
                 mb: 3,
-                fontWeight: 500
+                fontWeight: 500,
+                fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
               }}
             >
               Interested in collaborating on innovative projects?
@@ -378,13 +375,13 @@ const Projects = () => {
               sx={{
                 py: 2,
                 px: 4,
-                fontWeight: 700,
-                fontSize: '1.1rem',
+                fontWeight: 600,
+                fontSize: { xs: '1rem', sm: '1.1rem' },
                 background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                 '&:hover': {
                   background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.secondary.dark} 100%)`,
-                  transform: 'translateY(-3px)',
-                  boxShadow: `0 12px 30px ${theme.palette.primary.main}50`
+                  transform: 'translateY(-2px)',
+                  boxShadow: `0 8px 25px ${theme.palette.primary.main}40`
                 }
               }}
             >
