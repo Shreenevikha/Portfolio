@@ -10,7 +10,7 @@ import Education from './pages/Education';
 import Projects from './pages/Projects';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
-import Awards from './pages/Awards';
+// import Awards from './pages/Awards';
 import Footer from './Footer';
 
 const getDesignTokens = (mode) => ({
@@ -221,7 +221,7 @@ function App() {
       <Education />
       <Projects />
       <Skills />
-      <Awards />
+      {/* <Awards /> */}
       <Contact />
       <Footer />
     </ThemeProvider>

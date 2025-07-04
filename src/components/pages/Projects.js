@@ -68,36 +68,8 @@ const projects = [
     views: 2100,
     featured: true,
   },
-  {
-    title: 'E-Commerce Platform',
-    subtitle: 'Full-Stack Online Shopping Solution',
-    tech: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redux', 'JWT'],
-    description: 'Built a complete e-commerce platform with user authentication, product management, shopping cart functionality, payment integration, and admin dashboard. Implemented responsive design and optimized for performance.',
-    category: 'E-Commerce',
-    icon: <Web />,
-    status: 'Completed',
-    image: '/api/placeholder/400/250',
-    github: 'https://github.com/yourusername/ecommerce',
-    demo: 'https://ecommerce-demo.com',
-    likes: 92,
-    views: 3400,
-    featured: false,
-  },
-  {
-    title: 'Task Management App',
-    subtitle: 'Collaborative Project Management Tool',
-    tech: ['React', 'Firebase', 'Material-UI', 'Real-time Updates', 'PWA'],
-    description: 'Developed a real-time task management application with collaborative features, drag-and-drop functionality, and offline capabilities. Includes team collaboration, progress tracking, and notification systems.',
-    category: 'Productivity',
-    icon: <TrendingUp />,
-    status: 'Completed',
-    image: '/api/placeholder/400/250',
-    github: 'https://github.com/yourusername/task-manager',
-    demo: 'https://task-manager-demo.com',
-    likes: 56,
-    views: 1800,
-    featured: false,
-  },
+
+  
 ];
 
 const getStatusColor = (status, theme) => {
@@ -204,20 +176,23 @@ const Projects = () => {
         </Box>
 
         {/* Projects Grid */}
-        <Grid container spacing={4}>
+        <Grid container spacing={4} sx={{ alignItems: 'stretch' }}>
           {projects.map((project, index) => (
-            <Grid item xs={12} lg={6} key={index}>
+            <Grid item xs={12} lg={6} key={index} sx={{ display: 'flex' }}>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                style={{ width: '100%', display: 'flex' }}
               >
                 <Card
                   onMouseEnter={() => setHoveredProject(index)}
                   onMouseLeave={() => setHoveredProject(null)}
                   sx={{
-                    height: '100%',
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
                     background: theme.palette.mode === 'dark' 
                       ? 'linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)'
                       : 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
@@ -350,7 +325,7 @@ const Projects = () => {
                   </Box>
 
                   {/* Project Content */}
-                  <CardContent sx={{ p: 3 }}>
+                  <CardContent sx={{ p: 3, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                     <Typography 
                       variant="body1" 
                       sx={{ 
@@ -358,7 +333,8 @@ const Projects = () => {
                         fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem' },
                         lineHeight: 1.6,
                         mb: 3,
-                        fontWeight: 400
+                        fontWeight: 400,
+                        flexGrow: 1
                       }}
                     >
                       {project.description}
