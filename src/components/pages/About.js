@@ -38,34 +38,25 @@ const About = () => {
       icon: <Code />, 
       text: "Full Stack Development", 
       color: theme.palette.primary.main,
-      description: "Building end-to-end solutions with modern technologies"
     },
     { 
       icon: <Psychology />, 
       text: "Problem Solving", 
       color: theme.palette.secondary.main,
-      description: "Analytical approach to complex technical challenges"
     },
     { 
       icon: <TrendingUp />, 
       text: "Scalable Solutions", 
       color: theme.palette.success.main,
-      description: "Designing systems that grow with your business"
     },
     { 
       icon: <School />, 
       text: "Continuous Learning", 
       color: theme.palette.info.main,
-      description: "Always exploring new technologies and methodologies"
     },
   ];
 
-  const stats = [
-    { number: "1", label: "Year Experience", icon: <Work /> },
-    { number: "2+", label: "Projects Completed", icon: <Code /> },
-    { number: "5+", label: "Technologies Mastered", icon: <Star /> },
-    { number: "100%", label: "Client Satisfaction", icon: <EmojiEvents /> },
-  ];
+ 
 
   return (
     <Box
@@ -138,93 +129,8 @@ const About = () => {
           </Box>
 
           {/* Main Content Grid */}
-          <Grid container spacing={4} alignItems="center">
-            {/* Left: Profile Image and Stats */}
-            <Grid item xs={12} md={5}>
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <Box sx={{ textAlign: 'center', mb: 4 }}>
-                  <Avatar
-                    sx={{
-                      width: { xs: 200, md: 250 },
-                      height: { xs: 200, md: 250 },
-                      mx: 'auto',
-                      mb: 3,
-                      background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                      border: `4px solid ${theme.palette.background.paper}`,
-                      boxShadow: `0 8px 32px ${theme.palette.primary.main}40`,
-                      fontSize: { xs: '4rem', md: '5rem' },
-                      fontWeight: 700,
-                    }}
-                  >
-                    SN
-                  </Avatar>
-                  
-                  {/* Stats Grid */}
-                  <Grid container spacing={2}>
-                    {stats.map((stat, index) => (
-                      <Grid item xs={6} key={index}>
-                        <Paper
-                          elevation={0}
-                          sx={{
-                            p: 2,
-                            textAlign: 'center',
-                            background: theme.palette.mode === 'dark' 
-                              ? 'linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)'
-                              : 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
-                            border: `1px solid ${theme.palette.mode === 'dark' ? '#333' : '#e2e8f0'}`,
-                            borderRadius: 3,
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                              transform: 'translateY(-4px)',
-                              boxShadow: `0 8px 25px ${theme.palette.primary.main}30`,
-                            },
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              color: theme.palette.primary.main,
-                              mb: 1,
-                              display: 'flex',
-                              justifyContent: 'center',
-                            }}
-                          >
-                            {stat.icon}
-                          </Box>
-                          <Typography
-                            variant="h4"
-                            sx={{
-                              fontWeight: 900,
-                              color: theme.palette.text.primary,
-                              mb: 0.5,
-                              fontSize: { xs: '1.5rem', md: '1.8rem' },
-                            }}
-                          >
-                            {stat.number}
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: theme.palette.text.secondary,
-                              fontWeight: 500,
-                              fontSize: { xs: '0.8rem', md: '0.9rem' },
-                            }}
-                          >
-                            {stat.label}
-                          </Typography>
-                        </Paper>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Box>
-              </motion.div>
-            </Grid>
-
-            {/* Right: About Content */}
-            <Grid item xs={12} md={7}>
+          <Grid container spacing={4} alignItems="center" justifyContent="center">
+            <Grid item xs={12} md={12} lg={12}>
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -313,7 +219,7 @@ const About = () => {
                   
                   <Grid container spacing={2}>
                     {highlights.map((highlight, index) => (
-                      <Grid item xs={12} sm={6} key={index}>
+                      <Grid item xs={8} sm={3} key={index}>
                         <Box
                           sx={{
                             p: 2,
@@ -348,7 +254,7 @@ const About = () => {
                               <Typography
                                 variant="subtitle1"
                                 sx={{
-                                  fontWeight: 700,
+                                  fontWeight: 400,
                                   color: theme.palette.text.primary,
                                   fontSize: { xs: '0.9rem', md: '1rem' },
                                   mb: 0.5,
