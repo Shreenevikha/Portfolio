@@ -14,7 +14,9 @@ import {
   IconButton,
   Tooltip,
   useTheme,
-  useMediaQuery
+  useMediaQuery,
+  Paper,
+  Avatar,
 } from '@mui/material';
 import { 
   FolderOpenIcon,
@@ -28,7 +30,10 @@ import {
   AccountBalance,
   Dashboard,
   Api,
-  Web
+  Web,
+  Star,
+  Visibility,
+  Favorite,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
@@ -36,12 +41,17 @@ const projects = [
   {
     title: 'Biz Books - Modern Accounting Platform',
     subtitle: 'Next-Generation Financial Management Tool',
-    tech: ['Next.js', 'Node.js', 'MongoDB',  'API Integration', 'UI/UX Design'],
+    tech: ['Next.js', 'Node.js', 'MongoDB', 'API Integration', 'UI/UX Design'],
     description: 'Currently developing a revolutionary accounting platform with hybrid UI that seamlessly transitions between modern and traditional interfaces. Built with MERN stack architecture for scalability and real-time financial data processing. Features include comprehensive ERP functionality, user-friendly interface design, and advanced API integration.',
     category: 'Fintech',
     icon: <AccountBalance />,
     status: 'In Progress',
-    image: '/api/placeholder/400/250'
+    image: '/api/placeholder/400/250',
+    github: 'https://github.com/yourusername/bizbooks',
+    demo: 'https://bizbooks-demo.com',
+    likes: 45,
+    views: 1200,
+    featured: true,
   },
   {
     title: 'Healthcare Analytics Dashboard',
@@ -51,10 +61,43 @@ const projects = [
     category: 'Data Analytics',
     icon: <Dashboard />,
     status: 'Completed',
-    image: '/api/placeholder/400/250'
+    image: '/api/placeholder/400/250',
+    github: 'https://github.com/yourusername/healthcare-dashboard',
+    demo: 'https://healthcare-demo.com',
+    likes: 78,
+    views: 2100,
+    featured: true,
   },
- 
-  
+  {
+    title: 'E-Commerce Platform',
+    subtitle: 'Full-Stack Online Shopping Solution',
+    tech: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redux', 'JWT'],
+    description: 'Built a complete e-commerce platform with user authentication, product management, shopping cart functionality, payment integration, and admin dashboard. Implemented responsive design and optimized for performance.',
+    category: 'E-Commerce',
+    icon: <Web />,
+    status: 'Completed',
+    image: '/api/placeholder/400/250',
+    github: 'https://github.com/yourusername/ecommerce',
+    demo: 'https://ecommerce-demo.com',
+    likes: 92,
+    views: 3400,
+    featured: false,
+  },
+  {
+    title: 'Task Management App',
+    subtitle: 'Collaborative Project Management Tool',
+    tech: ['React', 'Firebase', 'Material-UI', 'Real-time Updates', 'PWA'],
+    description: 'Developed a real-time task management application with collaborative features, drag-and-drop functionality, and offline capabilities. Includes team collaboration, progress tracking, and notification systems.',
+    category: 'Productivity',
+    icon: <TrendingUp />,
+    status: 'Completed',
+    image: '/api/placeholder/400/250',
+    github: 'https://github.com/yourusername/task-manager',
+    demo: 'https://task-manager-demo.com',
+    likes: 56,
+    views: 1800,
+    featured: false,
+  },
 ];
 
 const getStatusColor = (status, theme) => {
@@ -89,6 +132,15 @@ const Projects = () => {
           top: 0,
           left: 0,
           right: 0,
+          height: '4px',
+          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
           bottom: 0,
           background: theme.palette.mode === 'dark'
             ? 'radial-gradient(circle at 30% 20%, rgba(0, 255, 153, 0.03) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(0, 255, 153, 0.02) 0%, transparent 50%)'
@@ -110,7 +162,7 @@ const Projects = () => {
               variant="h2" 
               sx={{ 
                 fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
-                fontWeight: 800,
+                fontWeight: 900,
                 background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
@@ -118,7 +170,19 @@ const Projects = () => {
                 mb: 2,
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
-                lineHeight: 1.2
+                lineHeight: 1.2,
+                position: 'relative',
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: -10,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: 80,
+                  height: 4,
+                  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                  borderRadius: 2,
+                },
               }}
             >
               Portfolio Showcase
@@ -140,7 +204,7 @@ const Projects = () => {
         </Box>
 
         {/* Projects Grid */}
-        <Grid container spacing={3}>
+        <Grid container spacing={4}>
           {projects.map((project, index) => (
             <Grid item xs={12} lg={6} key={index}>
               <motion.div
@@ -158,42 +222,62 @@ const Projects = () => {
                       ? 'linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)'
                       : 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
                     border: `1px solid ${theme.palette.mode === 'dark' ? '#333' : '#e2e8f0'}`,
-                    borderRadius: 3,
+                    borderRadius: 4,
                     overflow: 'hidden',
                     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                    transform: hoveredProject === index ? 'translateY(-8px) scale(1.01)' : 'translateY(0) scale(1)',
+                    transform: hoveredProject === index ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
                     boxShadow: hoveredProject === index 
-                      ? `0 12px 32px rgba(${theme.palette.primary.main}, 0.2)`
+                      ? `0 20px 40px rgba(${theme.palette.primary.main}, 0.25)`
                       : `0 4px 20px rgba(0, 0, 0, ${theme.palette.mode === 'dark' ? '0.2' : '0.08'})`,
                     '&:hover': {
                       borderColor: theme.palette.primary.main,
-                    }
+                    },
+                    position: 'relative',
                   }}
                 >
+                  {/* Featured Badge */}
+                  {project.featured && (
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 16,
+                        right: 16,
+                        zIndex: 2,
+                        background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                        color: '#fff',
+                        px: 2,
+                        py: 0.5,
+                        borderRadius: 2,
+                        fontSize: '0.75rem',
+                        fontWeight: 700,
+                        boxShadow: `0 4px 12px ${theme.palette.primary.main}40`,
+                      }}
+                    >
+                      FEATURED
+                    </Box>
+                  )}
+
                   {/* Project Header */}
                   <Box
                     sx={{
                       background: `linear-gradient(135deg, ${theme.palette.primary.main}10 0%, ${theme.palette.secondary.main}10 100%)`,
                       p: 3,
-                      borderBottom: `1px solid ${theme.palette.divider}`
+                      borderBottom: `1px solid ${theme.palette.divider}`,
+                      position: 'relative',
                     }}
                   >
                     <Stack direction="row" alignItems="center" spacing={2} mb={2}>
-                      <Box
+                      <Avatar
                         sx={{
-                          p: 1.5,
-                          borderRadius: 2,
                           background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                           color: '#fff',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          minWidth: 50,
-                          height: 50
+                          width: 56,
+                          height: 56,
+                          boxShadow: `0 4px 16px ${theme.palette.primary.main}40`,
                         }}
                       >
                         {project.icon}
-                      </Box>
+                      </Avatar>
                       <Box sx={{ flexGrow: 1 }}>
                         <Typography 
                           variant="h5" 
@@ -246,6 +330,22 @@ const Projects = () => {
                           border: `1px solid ${getStatusColor(project.status, theme)}30`
                         }}
                       />
+                    </Stack>
+
+                    {/* Stats */}
+                    <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        <Favorite sx={{ fontSize: '1rem', color: theme.palette.secondary.main }} />
+                        <Typography variant="caption" sx={{ color: theme.palette.text.secondary }}>
+                          {project.likes}
+                        </Typography>
+                      </Stack>
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        <Visibility sx={{ fontSize: '1rem', color: theme.palette.primary.main }} />
+                        <Typography variant="caption" sx={{ color: theme.palette.text.secondary }}>
+                          {project.views}
+                        </Typography>
+                      </Stack>
                     </Stack>
                   </Box>
 
@@ -308,6 +408,9 @@ const Projects = () => {
                       <Button
                         variant="contained"
                         startIcon={<GitHub />}
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         sx={{
                           flex: 1,
                           py: 1.5,
@@ -326,6 +429,9 @@ const Projects = () => {
                       <Button
                         variant="outlined"
                         startIcon={<Launch />}
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         sx={{
                           flex: 1,
                           py: 1.5,
@@ -358,35 +464,48 @@ const Projects = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                color: theme.palette.text.secondary,
-                mb: 3,
-                fontWeight: 500,
-                fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
-              }}
-            >
-              Interested in collaborating on innovative projects?
-            </Typography>
-            <Button
-              variant="contained"
-              size="large"
+            <Paper
+              elevation={0}
               sx={{
-                py: 2,
-                px: 4,
-                fontWeight: 600,
-                fontSize: { xs: '1rem', sm: '1.1rem' },
-                background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                '&:hover': {
-                  background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.secondary.dark} 100%)`,
-                  transform: 'translateY(-2px)',
-                  boxShadow: `0 8px 25px ${theme.palette.primary.main}40`
-                }
+                p: { xs: 4, md: 6 },
+                background: theme.palette.mode === 'dark' 
+                  ? 'linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%)'
+                  : 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
+                border: `2px solid ${theme.palette.mode === 'dark' ? '#333' : '#e2e8f0'}`,
+                borderRadius: 4,
+                boxShadow: `0 8px 32px rgba(0, 0, 0, ${theme.palette.mode === 'dark' ? '0.3' : '0.1'})`,
               }}
             >
-              Let's Build Something Amazing
-            </Button>
+              <Typography 
+                variant="h6" 
+                sx={{ 
+                  color: theme.palette.text.secondary,
+                  mb: 3,
+                  fontWeight: 500,
+                  fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' }
+                }}
+              >
+                Interested in collaborating on innovative projects?
+              </Typography>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  py: 2,
+                  px: 4,
+                  fontWeight: 600,
+                  fontSize: { xs: '1rem', sm: '1.1rem' },
+                  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                  '&:hover': {
+                    background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.secondary.dark} 100%)`,
+                    transform: 'translateY(-2px)',
+                    boxShadow: `0 8px 25px ${theme.palette.primary.main}40`
+                  }
+                }}
+              >
+                Let's Build Something Amazing
+              </Button>
+            </Paper>
           </motion.div>
         </Box>
       </Container>
