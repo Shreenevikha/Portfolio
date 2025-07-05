@@ -124,28 +124,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          {/* Profile Avatar */}
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <Avatar
-              sx={{
-                width: { xs: 120, md: 150 },
-                height: { xs: 120, md: 150 },
-                mx: 'auto',
-                mb: 4,
-                background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                border: `4px solid ${theme.palette.background.paper}`,
-                boxShadow: `0 8px 32px ${theme.palette.primary.main}40`,
-                fontSize: { xs: '3rem', md: '4rem' },
-                fontWeight: 700,
-              }}
-            >
-              SN
-            </Avatar>
-          </motion.div>
+        
 
           {/* Main Name */}
           <motion.div
@@ -162,6 +141,7 @@ const Hero = () => {
                 letterSpacing: '0.15em',
                 lineHeight: 0.9,
                 mb: 2,
+                mt: 16,
                 background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 50%, ${theme.palette.primary.main} 100%)`,
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
@@ -190,7 +170,7 @@ const Hero = () => {
               exit={{ opacity: 0, y: -20, scale: 0.8 }}
               transition={{ duration: 0.6 }}
             >
-              <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
+              <Stack direction="row" spacing={2} alignItems="center" justifyContent="center" mt={4}>
                 <Box
                   sx={{
                     p: 1,
@@ -202,6 +182,7 @@ const Hero = () => {
                     justifyContent: 'center',
                     width: 50,
                     height: 50,
+                    fontSize: { xs: '0.5rem', md: '1rem', lg: '1.5rem' },
                     boxShadow: `0 4px 16px ${theme.palette.primary.main}40`,
                   }}
                 >
@@ -210,8 +191,8 @@ const Hero = () => {
                 <Typography
                   variant="h3"
                   sx={{ 
-                    fontWeight: 700,
-                    fontSize: { xs: '1.5rem', md: '2rem', lg: '2.2rem' },
+                    fontWeight: 600,
+                    fontSize: { xs: '0.5rem', md: '1rem', lg: '1.5rem' },
                     color: theme.palette.text.primary,
                     textShadow: '0 2px 4px rgba(0,0,0,0.3)',
                   }}

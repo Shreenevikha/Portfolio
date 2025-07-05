@@ -17,7 +17,7 @@ const experiences = [
     title: 'Junior Software Associate',
     company: 'SNS INNOVATION HUB, Coimbatore',
     period: 'July 2024 – Present',
-    description: `Currently developing a modern accountant tool as part of a fintech project, combining traditional ERP features with a user-friendly interface. Hands-on with the MERN stack, focusing on full-stack development, API integration, and wireframing. Continuously learning through self-driven research, API documentation, UI/UX design, and fintech domain understanding. Actively expanding knowledge in Gen AI automation, and intelligent system integration to future-proof the platform.`,
+    description: `Currently developing a modern accountant tool as part of a fintech project, combining traditional features with a user-friendly interface. Hands-on with the MERN stack, focusing on full-stack development. Actively expanding knowledge in Gen AI automation, and intelligent system integration to future-proof the platform.`,
     technologies: ['MERN Stack', 'API Integration', 'UI/UX Design', 'Gen AI', 'Fintech'],
   },
   {
