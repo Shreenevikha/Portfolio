@@ -353,7 +353,6 @@ const Hero = () => {
                 variant="contained"
                 size="large"
                 href="/resume.pdf"
-                target="_blank"
                 download
                 startIcon={<Download />}
                 sx={{
