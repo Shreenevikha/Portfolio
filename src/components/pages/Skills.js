@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -7,7 +7,13 @@ import {
   useTheme,
   Paper,
   Stack,
-  LinearProgress,
+  Chip,
+  Card,
+  CardContent,
+  Avatar,
+  IconButton,
+  Tooltip,
+  useMediaQuery,
   Divider,
 } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
@@ -22,14 +28,27 @@ import {
   Cloud,
   Lightbulb,
   Group,
+  Web,
+  DataObject,
+  Api,
+  Security,
+  Speed,
+  Palette,
+  Build,
+  School,
+  Work,
+  Computer,
+  StorageOutlined,
+  WebOutlined,
 } from '@mui/icons-material';
 
-// Professional skill categories with clean design
+// Professional skill categories
 const skillCategories = [
   {
     title: "Programming Languages",
+    subtitle: "Core development languages",
     icon: <Code />,
-    color: "#3B82F6",
+    color: "#1976d2",
     skills: [
       { name: 'Java', level: 90 },
       { name: 'JavaScript', level: 85 },
@@ -40,8 +59,9 @@ const skillCategories = [
   },
   {
     title: "Frontend Technologies",
-    icon: <Brush />,
-    color: "#EF4444",
+    subtitle: "Modern web development",
+    icon: <WebOutlined />,
+    color: "#1976d2",
     skills: [
       { name: 'React.js', level: 90 },
       { name: 'Next.js', level: 80 },
@@ -52,8 +72,9 @@ const skillCategories = [
   },
   {
     title: "Backend & Databases",
-    icon: <Storage />,
-    color: "#10B981",
+    subtitle: "Server-side technologies",
+    icon: <StorageOutlined />,
+    color: "#1976d2",
     skills: [
       { name: 'Node.js', level: 80 },
       { name: 'MongoDB', level: 75 },
@@ -64,41 +85,58 @@ const skillCategories = [
   }
 ];
 
-// Professional areas of interest
-const areasOfInterest = [
-  // { name: 'Web Development', icon: <Code /> },
-  { name: 'NLP', icon: <Psychology /> },
-  // { name: 'Cloud Computing', icon: <Cloud /> },
-  { name: 'Gen AI', icon: <Lightbulb /> },
-  { name: 'Agentic AI', icon: <TrendingUp /> }
+// Professional areas of expertise
+const areasOfExpertise = [
+  { 
+    name: 'Natural Language Processing', 
+    shortName: 'NLP',
+    icon: <Psychology />, 
+    description: 'AI language understanding and processing',
+  },
+  { 
+    name: 'Generative AI', 
+    shortName: 'Generative AI',
+    icon: <Lightbulb />, 
+    description: 'Creative AI systems and applications',
+  },
+  { 
+    name: 'Agentic AI', 
+    shortName: 'Agentic AI',
+    icon: <TrendingUp />, 
+    description: 'Autonomous AI agents and systems',
+  }
 ];
 
-// Professional soft skills
-// const softSkills = [
-//   { name: 'Prompt Engineering', icon: <Lightbulb /> },
-//   { name: 'Analytical Skills', icon: <Psychology /> },
-//   { name: 'Adaptability', icon: <TrendingUp /> },
-//   { name: 'Communication', icon: <Group /> },
-//   { name: 'Problem Solving', icon: <Star /> }
-// ];
-
-// Professional tools
+// Professional tools and technologies
 const tools = [
-  'VS Code', 'Git', 'Postman', 'Canva', 'Ms Excel', 
-  'Cursor', 'Trae', 'Draw.io', 'Figma', 'Slack', 'n8n'
+  { name: 'VS Code', category: 'Development' },
+  { name: 'Git', category: 'Version Control' },
+  { name: 'Postman', category: 'API Testing' },
+  { name: 'Canva', category: 'Design' },
+  { name: 'MS Excel', category: 'Data Analysis' },
+  { name: 'Cursor', category: 'Development' },
+  { name: 'Trae', category: 'Development' },
+  { name: 'Draw.io', category: 'Diagramming' },
+  { name: 'Figma', category: 'Design' },
+  { name: 'Slack', category: 'Communication' },
+  { name: 'n8n', category: 'Automation' }
 ];
 
-/**
- * Skills Component - Professional Design
- * Clean, sophisticated layout showcasing technical expertise
- */
 const Skills = () => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const getSkillColor = (level) => {
+    if (level >= 90) return theme.palette.success.main;
+    if (level >= 80) return theme.palette.primary.main;
+    if (level >= 70) return theme.palette.warning.main;
+    return theme.palette.error.main;
+  };
 
   return (
     <Box
@@ -128,7 +166,7 @@ const Skills = () => {
                 letterSpacing: '-0.02em',
               }}
             >
-              Skills & Expertise
+              Technical Skills
             </Typography>
             <Typography
               variant="h6"
@@ -141,130 +179,148 @@ const Skills = () => {
                 fontSize: { xs: '1rem', md: '1.1rem' }
               }}
             >
-              A comprehensive overview of my technical capabilities and professional competencies
+              Comprehensive technical expertise across modern development technologies
             </Typography>
           </Box>
         </motion.div>
 
         {/* Technical Skills Section */}
         <Box sx={{ mb: { xs: 8, md: 10 } }}>
-          <Typography
-            variant="h3"
-            sx={{
-              fontSize: { xs: '1.5rem', md: '1.8rem' },
-              fontWeight: 600,
-              color: theme.palette.text.primary,
-              mb: 4,
-              textAlign: 'center',
-            }}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Technical Skills
-          </Typography>
+            <Typography
+              variant="h3"
+              sx={{
+                fontSize: { xs: '1.5rem', md: '1.8rem' },
+                fontWeight: 600,
+                color: theme.palette.text.primary,
+                mb: 6,
+                textAlign: 'center',
+              }}
+            >
+              Core Competencies
+            </Typography>
+          </motion.div>
           
           <Grid container spacing={4}>
             {skillCategories.map((category, index) => (
-              <Grid item xs={12} md={4} key={index}>
+              <Grid item xs={12} lg={4} key={index}>
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                 >
                   <Paper
                     elevation={0}
                     sx={{
-                      p: 4,
                       height: '100%',
                       background: theme.palette.background.paper,
                       border: `1px solid ${theme.palette.divider}`,
                       borderRadius: 2,
                       transition: 'all 0.3s ease',
                       '&:hover': {
-                        boxShadow: `0 4px 20px rgba(0, 0, 0, 0.1)`,
+                        boxShadow: theme.shadows[4],
                         transform: 'translateY(-2px)',
                       },
                     }}
                   >
                     {/* Category Header */}
-                    <Box sx={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      mb: 3,
-                      pb: 2,
-                      borderBottom: `1px solid ${theme.palette.divider}`
-                    }}>
-                      <Box
-                        sx={{
-                          p: 1.5,
-                          borderRadius: 1,
-                          background: `${category.color}15`,
-                          color: category.color,
-                          mr: 2,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}
-                      >
-                        {category.icon}
-                      </Box>
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          fontWeight: 600,
-                          color: theme.palette.text.primary,
-                          fontSize: '1.1rem',
-                        }}
-                      >
-                        {category.title}
-                      </Typography>
+                    <Box sx={{ p: 3, borderBottom: `1px solid ${theme.palette.divider}` }}>
+                      <Stack direction="row" alignItems="center" spacing={2}>
+                        <Avatar
+                          sx={{
+                            background: theme.palette.primary.main,
+                            color: '#fff',
+                            width: 48,
+                            height: 48,
+                          }}
+                        >
+                          {category.icon}
+                        </Avatar>
+                        <Box>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 600,
+                              color: theme.palette.text.primary,
+                              fontSize: '1.1rem',
+                              mb: 0.5,
+                            }}
+                          >
+                            {category.title}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: theme.palette.text.secondary,
+                              fontSize: '0.85rem',
+                            }}
+                          >
+                            {category.subtitle}
+                          </Typography>
+                        </Box>
+                      </Stack>
                     </Box>
                     
                     {/* Skills List */}
-                    <Stack spacing={2.5}>
-                      {category.skills.map((skill, skillIndex) => (
-                        <Box key={skillIndex}>
-                          <Box sx={{ 
-                            display: 'flex', 
-                            justifyContent: 'space-between', 
-                            alignItems: 'center',
-                            mb: 1
-                          }}>
-                            <Typography
-                              variant="body2"
+                    <Box sx={{ p: 3 }}>
+                      <Stack spacing={3}>
+                        {category.skills.map((skill, skillIndex) => (
+                          <Box key={skillIndex}>
+                            <Box sx={{ 
+                              display: 'flex', 
+                              justifyContent: 'space-between', 
+                              alignItems: 'center',
+                              mb: 1.5
+                            }}>
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  fontWeight: 500,
+                                  color: theme.palette.text.primary,
+                                  fontSize: '0.9rem',
+                                }}
+                              >
+                                {skill.name}
+                              </Typography>
+                              <Typography
+                                variant="caption"
+                                sx={{
+                                  fontWeight: 600,
+                                  color: getSkillColor(skill.level),
+                                  fontSize: '0.8rem',
+                                }}
+                              >
+                                {skill.level}%
+                              </Typography>
+                            </Box>
+                            <Box
                               sx={{
-                                fontWeight: 500,
-                                color: theme.palette.text.primary,
-                                fontSize: '0.9rem',
-                              }}
-                            >
-                              {skill.name}
-                            </Typography>
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                fontWeight: 600,
-                                color: category.color,
-                                fontSize: '0.8rem',
-                              }}
-                            >
-                              {skill.level}%
-                            </Typography>
-                          </Box>
-                          <LinearProgress
-                            variant="determinate"
-                            value={skill.level}
-                            sx={{
-                              height: 4,
-                              borderRadius: 2,
-                              backgroundColor: theme.palette.mode === 'dark' ? '#374151' : '#E5E7EB',
-                              '& .MuiLinearProgress-bar': {
-                                background: category.color,
+                                height: 4,
+                                background: theme.palette.mode === 'dark' ? '#374151' : '#E5E7EB',
                                 borderRadius: 2,
-                              },
-                            }}
-                          />
-                        </Box>
-                      ))}
-                    </Stack>
+                                overflow: 'hidden',
+                                position: 'relative',
+                              }}
+                            >
+                              <motion.div
+                                initial={{ width: 0 }}
+                                animate={inView ? { width: `${skill.level}%` } : {}}
+                                transition={{ duration: 1, delay: 0.5 + skillIndex * 0.1 }}
+                                style={{
+                                  height: '100%',
+                                  background: getSkillColor(skill.level),
+                                  borderRadius: 2,
+                                }}
+                              />
+                            </Box>
+                          </Box>
+                        ))}
+                      </Stack>
+                    </Box>
                   </Paper>
                 </motion.div>
               </Grid>
@@ -272,160 +328,96 @@ const Skills = () => {
           </Grid>
         </Box>
 
-        {/* Areas of Interest & Soft Skills */}
-        <Box sx={{ mb: { xs: 8, md: 10 } }}>
-          <Grid container spacing={6}>
-            {/* Areas of Interest */}
-            <Grid item xs={12} md={6}>
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <Typography
-                  variant="h4"
-                  sx={{
-                    fontSize: { xs: '1.3rem', md: '1.5rem' },
-                    fontWeight: 600,
-                    color: theme.palette.text.primary,
-                    mb: 3,
-                  }}
-                >
-                  Areas of Interest
-                </Typography>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    p: 3,
-                    background: theme.palette.background.paper,
-                    border: `1px solid ${theme.palette.divider}`,
-                    borderRadius: 2,
-                  }}
-                >
-                  <Grid container spacing={2}>
-                    {areasOfInterest.map((area, index) => (
-                      <Grid item xs={6} key={index}>
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            p: 2,
-                            borderRadius: 1,
-                            background: theme.palette.mode === 'dark' ? '#1F2937' : '#F9FAFB',
-                            border: `1px solid ${theme.palette.divider}`,
-                            transition: 'all 0.2s ease',
-                            '&:hover': {
-                              background: theme.palette.mode === 'dark' ? '#374151' : '#F3F4F6',
-                            },
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              color: theme.palette.primary.main,
-                              mr: 1.5,
-                              display: 'flex',
-                              alignItems: 'center',
-                            }}
-                          >
-                            {area.icon}
-                          </Box>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              fontWeight: 500,
-                              color: theme.palette.text.primary,
-                              fontSize: '0.85rem',
-                            }}
-                          >
-                            {area.name}
-                          </Typography>
-                        </Box>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Paper>
-              </motion.div>
-            </Grid>
+        {/* Areas of Expertise */}
+        {/* <Box sx={{ mb: { xs: 8, md: 10 } }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                fontSize: { xs: '1.5rem', md: '1.8rem' },
+                fontWeight: 600,
+                color: theme.palette.text.primary,
+                mb: 6,
+                textAlign: 'center',
+              }}
+            >
+              Areas of Expertise
+            </Typography>
+          </motion.div>
 
-            {/* Soft Skills */}
-            {/* <Grid item xs={12} md={6}>
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <Typography
-                  variant="h4"
-                  sx={{
-                    fontSize: { xs: '1.3rem', md: '1.5rem' },
-                    fontWeight: 600,
-                    color: theme.palette.text.primary,
-                    mb: 3,
-                  }}
+          <Grid container spacing={3}>
+            {areasOfExpertise.map((area, index) => (
+              <Grid item xs={12} md={4} key={index}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
                 >
-                  Professional Skills
-                </Typography>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    p: 3,
-                    background: theme.palette.background.paper,
-                    border: `1px solid ${theme.palette.divider}`,
-                    borderRadius: 2,
-                  }}
-                >
-                  <Grid container spacing={2}>
-                    {softSkills.map((skill, index) => (
-                      <Grid item xs={6} key={index}>
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            p: 2,
-                            borderRadius: 1,
-                            background: theme.palette.mode === 'dark' ? '#1F2937' : '#F9FAFB',
-                            border: `1px solid ${theme.palette.divider}`,
-                            transition: 'all 0.2s ease',
-                            '&:hover': {
-                              background: theme.palette.mode === 'dark' ? '#374151' : '#F3F4F6',
-                            },
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              color: theme.palette.secondary.main,
-                              mr: 1.5,
-                              display: 'flex',
-                              alignItems: 'center',
-                            }}
-                          >
-                            {skill.icon}
-                          </Box>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              fontWeight: 500,
-                              color: theme.palette.text.primary,
-                              fontSize: '0.85rem',
-                            }}
-                          >
-                            {skill.name}
-                          </Typography>
-                        </Box>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Paper>
-              </motion.div>
-            </Grid> */}
+                  <Paper
+                    elevation={0}
+                    sx={{
+                      p: 3,
+                      height: '100%',
+                      background: theme.palette.background.paper,
+                      border: `1px solid ${theme.palette.divider}`,
+                      borderRadius: 2,
+                      transition: 'all 0.3s ease',
+                      textAlign: 'center',
+                      '&:hover': {
+                        boxShadow: theme.shadows[4],
+                        transform: 'translateY(-2px)',
+                      },
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        background: theme.palette.primary.main,
+                        color: '#fff',
+                        width: 56,
+                        height: 56,
+                        mx: 'auto',
+                        mb: 2,
+                      }}
+                    >
+                      {area.icon}
+                    </Avatar>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: 600,
+                        color: theme.palette.text.primary,
+                        mb: 1,
+                        fontSize: '1.1rem',
+                      }}
+                    >
+                      {area.shortName}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: theme.palette.text.secondary,
+                        fontSize: '0.85rem',
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {area.description}
+                    </Typography>
+                  </Paper>
+                </motion.div>
+              </Grid>
+            ))}
           </Grid>
-        </Box>
+        </Box> */}
 
         {/* Tools & Technologies */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
           <Box>
             <Typography
@@ -434,7 +426,7 @@ const Skills = () => {
                 fontSize: { xs: '1.5rem', md: '1.8rem' },
                 fontWeight: 600,
                 color: theme.palette.text.primary,
-                mb: 4,
+                mb: 6,
                 textAlign: 'center',
               }}
             >
@@ -458,48 +450,36 @@ const Skills = () => {
                   justifyContent: 'center',
                 }}
               >
-                                 {tools.map((tool, index) => (
-                   <motion.div
-                     key={index}
-                     initial={{ opacity: 0, scale: 0.9 }}
-                     animate={inView ? { opacity: 1, scale: 1 } : {}}
-                     transition={{ duration: 0.4, delay: 0.6 + index * 0.05 }}
-                   >
-                     <Box
-                       sx={{
-                         px: 3,
-                         py: 1.5,
-                         borderRadius: 2,
-                         background: theme.palette.mode === 'dark' ? '#1F2937' : '#F9FAFB',
-                         border: `1px solid ${theme.palette.divider}`,
-                         transition: 'all 0.2s ease',
-                         cursor: 'pointer',
-                         display: 'flex',
-                         alignItems: 'center',
-                         gap: 1,
-                         '&:hover': {
-                           background: theme.palette.mode === 'dark' ? '#374151' : '#F3F4F6',
-                           borderColor: theme.palette.primary.main,
-                         },
-                       }}
-                     >
-                       <Star sx={{ 
-                         fontSize: '1rem', 
-                         color: theme.palette.primary.main 
-                       }} />
-                       <Typography
-                         variant="body2"
-                         sx={{
-                           fontWeight: 500,
-                           color: theme.palette.text.primary,
-                           fontSize: '0.9rem',
-                         }}
-                       >
-                         {tool}
-                       </Typography>
-                     </Box>
-                   </motion.div>
-                 ))}
+                {tools.map((tool, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={inView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.4, delay: 0.9 + index * 0.05 }}
+                  >
+                    <Tooltip title={tool.category} placement="top">
+                      <Chip
+                        label={tool.name}
+                        sx={{
+                          px: 2,
+                          py: 1,
+                          background: theme.palette.background.default,
+                          border: `1px solid ${theme.palette.divider}`,
+                          transition: 'all 0.2s ease',
+                          cursor: 'pointer',
+                          '&:hover': {
+                            background: theme.palette.action.hover,
+                            borderColor: theme.palette.primary.main,
+                          },
+                          '& .MuiChip-label': {
+                            fontWeight: 500,
+                            fontSize: '0.9rem',
+                          }
+                        }}
+                      />
+                    </Tooltip>
+                  </motion.div>
+                ))}
               </Box>
             </Paper>
           </Box>
