@@ -66,21 +66,21 @@ const skillCategories = [
 
 // Professional areas of interest
 const areasOfInterest = [
-  { name: 'Web Development', icon: <Code /> },
+  // { name: 'Web Development', icon: <Code /> },
   { name: 'NLP', icon: <Psychology /> },
-  { name: 'Cloud Computing', icon: <Cloud /> },
+  // { name: 'Cloud Computing', icon: <Cloud /> },
   { name: 'Gen AI', icon: <Lightbulb /> },
   { name: 'Agentic AI', icon: <TrendingUp /> }
 ];
 
 // Professional soft skills
-const softSkills = [
-  { name: 'Prompt Engineering', icon: <Lightbulb /> },
-  { name: 'Analytical Skills', icon: <Psychology /> },
-  { name: 'Adaptability', icon: <TrendingUp /> },
-  { name: 'Communication', icon: <Group /> },
-  { name: 'Problem Solving', icon: <Star /> }
-];
+// const softSkills = [
+//   { name: 'Prompt Engineering', icon: <Lightbulb /> },
+//   { name: 'Analytical Skills', icon: <Psychology /> },
+//   { name: 'Adaptability', icon: <TrendingUp /> },
+//   { name: 'Communication', icon: <Group /> },
+//   { name: 'Problem Solving', icon: <Star /> }
+// ];
 
 // Professional tools
 const tools = [
@@ -348,7 +348,7 @@ const Skills = () => {
             </Grid>
 
             {/* Soft Skills */}
-            <Grid item xs={12} md={6}>
+            {/* <Grid item xs={12} md={6}>
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -417,7 +417,7 @@ const Skills = () => {
                   </Grid>
                 </Paper>
               </motion.div>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Box>
 
