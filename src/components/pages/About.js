@@ -130,7 +130,7 @@ const About = () => {
 
           {/* Main Content Grid */}
           <Grid container spacing={4} alignItems="center" justifyContent="center">
-            <Grid item xs={12} md={12} lg={12}>
+          <Grid item xs={12} md={12} lg={12}>
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
